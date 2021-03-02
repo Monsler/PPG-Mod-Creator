@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>People Playground | Mod Maker</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/jszip.min.js"></script>
+    <script src="/js/fileSaver.js"></script>
+    <script src="/js/index.js" type="module" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css"> 
+    <link rel="shortcut icon" href="/img/favicon.png" type="image/png">
+
+    <meta property="og:title" content="People Playground | Mod Creator">
+    <meta property="og:site_name" content="People Playground | Mod Creator">
+    <meta property="og:url" content="https://cozax.github.io/PPG-Mod-Creator/">
+    <meta property="og:description" content="People Playground is a tool allowing the creation of very basic mods on the game People Playground. This site is dedicated to people who don't have the courage to learn how to make mods. This mod creator is very basic, and is not intended for the creation of mods for the steam workshop.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="/img/icon.png">
+</head>
+<body>
+    <main>
+        <aside>
+            <ul>
+                <li><i data-page="create" class="zmdi zmdi-plus"></i></li>
+                <li><i data-page="settings" class="zmdi zmdi-settings"></i></li>
+                <li><i data-page="help" class="zmdi zmdi-help"></i></li>
+            </ul>
+        </aside>
+        <article>
+            <section id="start" class="active">Press <i class="zmdi zmdi-plus"></i> to add your first mod element</section>
+
+            <section id="create">
+                <h1>Created Elements</h1>
+                <div>
+                    <div id="createdElements"></div>
+                    <button data-page="createElement" id="mod_createElement">Create Element</button>
+                </div>
+            </section>
+
+            <section id="createElement">
+                <h1>Create A New Element</h1>
+                <div><h2>Element Type</h2><select></select></div>
+
+                <div id="weapon">
+                    <h1>Weapon Creation</h1>
+                    <ul>
+                        <li>
+                            <span>Weapon Type</span>
+                            <select class="type">
+                                <option value="Pistol">Pistol</option>
+                                <option value="Assault Rifle">Assault Rifle</option>
+                                <option value="Sniper Rifle">Sniper Rifle</option>
+                                <option value="Grenade Launcher">Grenade Launcher</option>
+                            </select>
+                        </li>
+                        <li>
+                            <span>Weapon Name</span>
+                            <input type="text" class="name">
+                        </li>
+                        <li>
+                            <span>Weapon Description</span>
+                            <input type="text" class="description">
+                        </li>
+                        <li>
+                            <span>Weapon Thumbnail</span>
+                            <input type="file" id="weapon_thumbnail_file" accept=".png">
+                            <button id="weapon_thumbnail">Select .png file</button>
+                        </li>
+                        <li>
+                            <span>Weapon Sprite (Recommended Size: Under 100x100 px)</span>
+                            <input type="file" id="weapon_sprite_file" accept=".png">
+                            <button id="weapon_sprite">Select .png file</button>
+                        </li>
+                        <li>
+                            <span>Weapon Shotsound</span>
+                            <input type="file" id="weapon_shotsound_file" accept=".wav, .mp3">
+                            <button id="weapon_shotsound">Select .wav/.mp3 file</button>
+                        </li>
+                        <li>
+                            <span>Weapon Damage</span>
+                            <input type="number" class="damage" min="0" step="0.1" value="0.8">
+                        </li>
+                    </ul>
+                    <span class="warning"></span>
+                    <button data-item="weapon" class="save">Save Weapon</button>
+                </div>
+
+                <div id="explosive">
+                    <h1>Explosive Creator</h1>
+                    <ul>
+                        <li>
+                            <span>Explosive Type</span>
+                            <select class="type">
+                                <option value="Dynamite">Dynamite</option>
+                                <option value="Atom Bomb">Nuke</option>
+                                <option value="Red Barrel">Red Barrel</option>
+                            </select>
+                        </li>
+                        <li>
+                            <span>Explosive Name</span>
+                            <input type="text" class="name">
+                        </li>
+                        <li>
+                            <span>Explosive Description</span>
+                            <input type="text" class="description">
+                        </li>
+                        <li>
+                            <span>Explosive Thumbnail</span>
+                            <input type="file" id="explosive_thumbnail_file" accept=".png">
+                            <button id="explosive_thumbnail">Select .png file</button>
+                        </li>
+                        <li>
+                            <span>Explosive Sprite (Recommended Size: Under 100x100 px)</span>
+                            <input type="file" id="explosive_sprite_file" accept=".png">
+                            <button id="explosive_sprite">Select .png file</button>
+                        </li>
+                        <li>
+                            <span>Explosive Range</span>
+                            <input type="number" class="range" min="0" step="1" value="30">
+                        </li>
+                        <li>
+                            <span>Explosive Delay (In Seconds)</span>
+                            <input type="number" class="delay" min="0" step="1" value="0">
+                        </li>
+                    </ul>
+                    <span class="warning"></span>
+                    <button data-item="explosive" class="save">Save Explosive</button>
+                </div>
+
+                <div id="entity">
+                    <h1>Entity Creator</h1>
+                    <ul>
+                        <li>
+                            <span>Entity Type</span>
+                            <select class="type">
+                                <option value="Human">Human</option>
+                                <option value="Android">Android</option>
+                            </select>
+                        </li>
+                        <li>
+                            <span>Entity Name</span>
+                            <input type="text" class="name">
+                        </li>
+                        <li>
+                            <span>Entity Description</span>
+                            <input type="text" class="description">
+                        </li>
+                        <li>
+                            <span>Entity Thumbnail</span>
+                            <input type="file" id="entity_thumbnail_file" accept=".png">
+                            <button id="entity_thumbnail">Select .png file</button>
+                        </li>
+                        <li>
+                            <span>Entity Skin (You can use this <a href="https://raw.githubusercontent.com/mestiez/ppg-snippets/master/Human%20textures/skin%20layer.png" target="_blank">texture</a> as reference)</span>
+                            <input type="file" id="entity_skin_file" accept=".png">
+                            <button id="entity_skin">Select .png file</button>
+                        </li>
+                        <li>
+                            <span>Entity Flesh (You can use this <a href="https://raw.githubusercontent.com/mestiez/ppg-snippets/master/Human%20textures/flesh%20layer.png" target="_blank">texture</a> as reference)</span>
+                            <input type="file" id="entity_flesh_file" accept=".png">
+                            <button id="entity_flesh">Select .png file</button>
+                        </li>
+                        <li>
+                            <span>Entity Bone (You can use this <a href="https://raw.githubusercontent.com/mestiez/ppg-snippets/master/Human%20textures/bone%20layer.png" target="_blank">texture</a> as reference)</span>
+                            <input type="file" id="entity_bone_file" accept=".png">
+                            <button id="entity_bone">Select .png file</button>
+                        </li>
+                    </ul>
+                    <span class="warning"></span>
+                    <button data-item="entity" class="save">Save Entity</button>
+                </div>
+            </section>
+
+            <section id="settings">
+                <h1>Mod Settings</h1>
+                <div>
+                    <div class="left">
+                        <input type="text" id="mod_name" placeholder="Mod Name" autocomplete="off">
+                        <input type="text" id="mod_author" placeholder="Author Name" autocomplete="off">
+                        <input type="text" id="mod_description" placeholder="Mod Description" autocomplete="off">
+                        <span id="settings_warning"></span>
+                        <button id="mod_download">Download your mod!</button>
+                    </div>
+                    <div class="right">
+                        <img src="/img/noModThumbnail.png" id="preview_mod_thumb">
+                        <input type="file" id="mod_thumb_file" accept=".png, .jpeg, .jpg">
+                        <span style="margin: .5pc 0;">Your thumbnail must be 200x200 or it will be crop (not scaled!)</span>
+                        <button id="mod_thumbnail">Select .png/.jpeg/.jpg</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="help">
+                <h1>How to use "People Playground Mod Creator"</h1>
+                <span>First of all, this mod creator is very basic, and is not intended for the creation of mods for the steam workshop.</span>
+                <span>Also, if you want to learn how to make mods from scratch, there are some useful guides on steam community, I made one on <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2298225676">this link.</a></span>
+                <div class="hr"></div>
+                <h1>How to create your first mod element</h1>
+                <span>
+                    To create your first mod element, press the "+" at the top of the navbar, it should show you a page with all your created elements. To create a new one click on the "Create Element" button.
+                    Once the button clicked, a page should appear, offering you to choose the type of element you want to create. To change the type of element to be created, simply click on "Click to select a type", and choose what suits you.
+                    You can create as many elements as you want, but be aware that the more elements you create, the longer it will take to generate the mod. Also, when importing files, avoid using files that are too large.
+                    If you want to avoid that your item is 100 times the size of your humans, use sprites with dimensions smaller than 100x100 pixels.
+                    Once you have created your item, click on the save button to save it in your item list. Please note that you cannot modify the items once they are saved, also, your item list will be deleted if you reload the page.
+                </span>
+                <div class="hr"></div>
+                <h1>How to download your created mod</h1>
+                <span>
+                    To download your new super cool mod, just click on the present gear of the sidebar. 
+                    Here you will be able to change your mod information (name, description, author and thumbnail). Be careful, for your thumbnail, use images of 200x200 pixels, or it will be crop. 
+                    To export your mod, you must have created at least one element. To download it, just click on the "Download your mod!" button. 
+                    If no download popup starts, allow popups on this page in your browser options. Once the .zip is downloaded, go to your local game files, and export the .zip to the mod folder. 
+                    (Be careful not to export it to the root of the mod folder). 
+                    Well done, now you can use your mod.
+                </span>
+            </section>
+        </article>
+    </main>
+</body>
+</html>

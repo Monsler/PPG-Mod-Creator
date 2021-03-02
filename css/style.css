@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+
+/* Global html elements */
+* {outline: none}
+body {
+    margin: 0;
+    height: 100vh;
+    background-image: url(/img/background.png);
+    background-size: cover;
+    display: flex;
+    overflow: hidden;
+}
+
+button {
+    margin: 0 .5pc;
+    padding: 1pc 2pc;
+    font-family: 'Rubik', sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    background: black;
+    border: none;
+    color: white;
+    transition: transform .2s ease, opacity .2s ease;
+    cursor: pointer;
+}
+button:hover {transform: translateY(-3px);opacity: .7;}
+button.active {transform: translateY(-3px);opacity: .7;}
+
+input[type="file"] {
+    position: absolute;
+    width: 0.01px;height: 0.01px;
+    opacity: 0;
+    overflow: hidden;
+    z-index: -1;
+}
+input[type="text"] {
+    margin: .5pc;
+    border: none;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 1pc;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+    color: white;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding: .5pc 1pc;
+    color: white;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+a {color: #8fd2ff;text-decoration: none;}
+
+.hr {
+    height: 1px;
+    background: rgba(0, 0, 0, 0.3);
+    margin: 3pc 0px;
+}
+
+/* Main */
+main {
+    display: flex;
+    flex: 1 1 auto;
+}
+
+main aside {
+    background: rgba(0, 0, 0, 0.7);
+    width: 10vh;
+    flex-shrink: 1;
+    display: flex;
+}
+
+main aside ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    list-style-type: none;
+    padding: 2pc 0;
+    margin: 0;
+    width: 100%
+}
+
+main aside ul li {
+    width: 100%;
+    display: flex;
+    color: white;
+    align-items: center;
+    flex-direction: column;
+    font-size: 3vh;
+}
+
+main aside ul li i.active {opacity: 0.5;}
+main aside ul li i:hover {transform: translateY(-5px);}
+main aside ul li i {
+    cursor: pointer;
+    margin: 1.5pc;
+    transition: transform .2s ease;
+}
+
+main article {width: 100%;}
+
+main article section.active {display: flex;}
+main article section {
+    font-family: 'Rubik', sans-serif;
+    display: none;
+    padding: 3pc;
+    height: 100%;
+    color: white;
+    flex-direction: column;
+}
+
+h1 {font-size: 3vh;}
+
+.left, .right {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    align-items: center;
+}
+
+.detail {opacity: .5;text-transform: capitalize;}
+
+#warning {margin: .5pc 0;}
+
+/* Sections */
+#start i {margin: 0 .5pc;font-size: 3vh;}
+#start {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    font-size: 2vh;
+}
+
+#create button {margin: 1pc 0;}
+#create #createdElements {
+    display: flex;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.7);
+    padding: 1pc;
+    max-height: 50vh;
+    overflow: auto;
+    flex-wrap: wrap;
+}
+#create #createdElements .container i {font-size: 15px;cursor: pointer;color: #ff3737;margin-right: 1pc;}
+#create #createdElements .container {
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid rgba(255, 255, 255, 0.1); */
+    background: rgba(0, 0, 0, 0.7);
+    margin: .5pc;
+    width: 200px;
+}
+#create #createdElements img {width: 80px;}
+#create #createdElements .right {display: flex;flex-direction: column;margin-left: 1pc;align-items: flex-start;}
+#create #createdElements .container > div {display: flex;padding: .5pc;}
+#create #createdElements .container header {
+    display: flex;
+    width: 100%;
+    background: rgba(0, 0, 0);
+    align-items: center;
+    padding: .2pc 0;
+    justify-content: right;
+}
+
+#settings > div {display: flex;}
+#settings button {margin-top: 1.5pc;}
+#settings input {width: 100%;}
+#settings img {width: 200px;height: 200px;border: 1px solid rgba(255, 255, 255, 0.1);}
+
+#createElement div:not(:first-of-type) {display: none;}
+#createElement div.active {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.7);
+    padding: 1pc 3pc;
+    max-height: 50vh;
+    overflow: auto;
+}
+#createElement input {padding: .5pc 1pc;margin: 0;}
+#createElement button {padding: .5pc 1pc;margin: 0;font-size: 1pc;}
+#createElement ul {list-style-type: none;padding: 0;}
+#createElement ul li {margin: .5pc 0;}
+#createElement ul li span {margin: 0 1.5pc;}
+
+@media screen and (max-width: 640px){
+    body * {
+        display: none;
+    }
+    body::before {
+        display: flex;
+        font-family: 'Rubik', sans-serif;
+        content: "This site is not available on mobile. Sorry";
+        color: white;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+}

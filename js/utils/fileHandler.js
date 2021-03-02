@@ -1,0 +1,39 @@
+/* File Input Handler */
+class FileInputHandler {
+    constructor(queryButton, queryFile, changeText=false){
+        this.button = document.querySelector(queryButton);
+        this.file = document.querySelector(queryFile);
+        this.baseText = this.button.innerText;
+
+        this.button.addEventListener("click", () => this.file.click());
+        this.file.addEventListener("change", () => {
+            const extensions = this.file.accept.split(", ");
+            const filename = this.file.files[0].name;
+            const _extension = filename.substring(filename.lastIndexOf('.')+1, filename.length) || filename;
+
+            if(!extensions.includes(`.${_extension}`)) {
+                this.reset();
+                return this.button.innerText = `PLEASE Select ${extensions.join("/")} file`;
+            }
+
+            if(this.file.files[0] == undefined) return this.button.innerText = this.baseText;
+            if(changeText) return this.button.innerText = filename;
+        });
+    }
+    getBase64File(){
+        return new Promise(res => {
+            const reader = new FileReader();
+    
+            reader.onload = e => res(e.target.result);
+            reader.readAsDataURL(this.file.files[0]);
+        });
+    }
+    reset(){ 
+        this.button.innerText = this.baseText; 
+        this.file.value = "";
+    }
+    on(method, callback){
+        return this.file.addEventListener(method, callback);
+    }
+}
+export { FileInputHandler }

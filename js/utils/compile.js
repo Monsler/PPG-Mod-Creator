@@ -26,6 +26,25 @@ class Compiler {
         }
     }
 
+    compileObject(item){
+        this.modApiRegistered += `
+        ModAPI.Register(
+            new Modification()
+            {
+                OriginalItem = ModAPI.FindSpawnable("Metal Cube"),
+                NameOverride = "${item.data.name}",
+                DescriptionOverride = "${item.data.description}",
+                CategoryOverride = ModAPI.FindCategory("Misc."),
+                ThumbnailOverride = ModAPI.LoadSprite("Thumbnails/${(item.data.name).replace(/ /g, "-")}-thumb.png"),
+                AfterSpawn = (Instance) =>
+                {
+                    Instance.GetComponent<SpriteRenderer>().sprite = ModAPI.LoadSprite("Sprites/${(item.data.name).replace(/ /g, "-")}.png");
+                    Instance.FixColliders();
+                }
+            }
+        );`;
+    }
+
     compileEntity(item){
         this.modApiRegistered += `
         ModAPI.Register(
@@ -111,6 +130,7 @@ class Compiler {
             if (item.category == "Firearms") this.compileWeapon(item);
             if (item.category == "Explosives") this.compileExplosive(item);
             if(item.category == "Entities") this.compileEntity(item);
+            if(item.category == "Misc.") this.compileObject(item);
         }
         return this.createZipFile();
     }

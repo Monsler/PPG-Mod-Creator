@@ -4,12 +4,12 @@ import { items, checkInputs } from "./utils/create.js";
 import { Compiler } from "./utils/compile.js";
 
 
-/* Mod Object */
-const mod = {
-    name: document.querySelector("#mod_name").value,
-    author: document.querySelector("#mod_author").value,
-    description: document.querySelector("#mod_description").value,
-    image: document.querySelector("#preview_mod_thumb").src
+/* Handle number input */
+const numberInputs = document.querySelectorAll("input[type='number']");
+for (const input of numberInputs){
+    input.addEventListener("change", () => {
+        input.value = input.value.replace(/\D/g, "");
+    });
 }
 
 

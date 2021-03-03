@@ -44,10 +44,10 @@
                 <div><h2>Element Type</h2><select></select></div>
 
                 <div id="weapon">
-                    <h1>Weapon Creation</h1>
+                    <h1>Firearm Creation</h1>
                     <ul>
                         <li>
-                            <span>Weapon Type</span>
+                            <span>Firearm Type</span>
                             <select class="type">
                                 <option value="Pistol">Pistol</option>
                                 <option value="Assault Rifle">Assault Rifle</option>
@@ -56,35 +56,35 @@
                             </select>
                         </li>
                         <li>
-                            <span>Weapon Name</span>
+                            <span>Firearm Name</span>
                             <input type="text" class="name">
                         </li>
                         <li>
-                            <span>Weapon Description</span>
+                            <span>Firearm Description</span>
                             <input type="text" class="description">
                         </li>
                         <li>
-                            <span>Weapon Thumbnail</span>
+                            <span>Firearm Thumbnail</span>
                             <input type="file" id="weapon_thumbnail_file" accept=".png">
                             <button id="weapon_thumbnail">Select .png file</button>
                         </li>
                         <li>
-                            <span>Weapon Sprite (Recommended Size: Under 100x100 px)</span>
+                            <span>Firearm Sprite (Recommended Size: Under 100x100 px)</span>
                             <input type="file" id="weapon_sprite_file" accept=".png">
                             <button id="weapon_sprite">Select .png file</button>
                         </li>
                         <li>
-                            <span>Weapon Shotsound</span>
+                            <span>Firearm Shotsound</span>
                             <input type="file" id="weapon_shotsound_file" accept=".wav, .mp3">
                             <button id="weapon_shotsound">Select .wav/.mp3 file</button>
                         </li>
                         <li>
-                            <span>Weapon Damage</span>
+                            <span>Firearm Damage</span>
                             <input type="number" class="damage" min="0" step="0.1" value="0.8">
                         </li>
                     </ul>
                     <span class="warning"></span>
-                    <button data-item="weapon" class="save">Save Weapon</button>
+                    <button data-item="weapon" class="save">Save Firearm</button>
                 </div>
 
                 <div id="explosive">
@@ -170,6 +170,33 @@
                     </ul>
                     <span class="warning"></span>
                     <button data-item="entity" class="save">Save Entity</button>
+                </div>
+
+                <div id="object">
+                    <h1>Object Creator</h1>
+                    <input type="hidden" class="type" value="Object">
+                    <ul>
+                        <li>
+                            <span>Object Name</span>
+                            <input type="text" class="name">
+                        </li>
+                        <li>
+                            <span>Object Description</span>
+                            <input type="text" class="description">
+                        </li>
+                        <li>
+                            <span>Object Thumbnail</span>
+                            <input type="file" id="object_thumbnail_file" accept=".png">
+                            <button id="object_thumbnail">Select .png file</button>
+                        </li>
+                        <li>
+                            <span>Object Sprite (Recommended Size: Under 100x100 px)</span>
+                            <input type="file" id="object_sprite_file" accept=".png">
+                            <button id="object_sprite">Select .png file</button>
+                        </li>
+                    </ul>
+                    <span class="warning"></span>
+                    <button data-item="object" class="save">Save Object</button>
                 </div>
             </section>
 

@@ -25,6 +25,11 @@ const files = {
         skin_file: new FileInputHandler("#entity_skin", "#entity_skin_file", true),
         flesh_file: new FileInputHandler("#entity_flesh", "#entity_flesh_file", true),
         bone_file: new FileInputHandler("#entity_bone", "#entity_bone_file", true)
+    },
+
+    object: {
+        thumbnail_file: new FileInputHandler("#object_thumbnail", "#object_thumbnail_file", true),
+        sprite_file: new FileInputHandler("#object_sprite", "#object_sprite_file", true)
     }
 }
 
@@ -39,7 +44,7 @@ function checkInputs(divID){
 
 
 /* Element Selection */
-const availableElements = ["Click to select a type", "Weapon", "Explosive", "Entity"];
+const availableElements = ["Click to select a type", "Weapon", "Explosive", "Entity", "Object"];
 for (const option of availableElements){
     const selectOption = document.createElement("option");
     selectOption.value = option; selectOption.innerText = option;
@@ -65,7 +70,8 @@ const itemSaveButtons = document.querySelectorAll("#createElement button.save");
 const categories = {
     weapon: "Firearms",
     explosive: "Explosives",
-    entity: "Entities"
+    entity: "Entities",
+    object: "Misc."
 }
 
 for (const button of itemSaveButtons){

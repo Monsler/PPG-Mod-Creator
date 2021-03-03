@@ -8,7 +8,7 @@ import { Compiler } from "./utils/compile.js";
 const numberInputs = document.querySelectorAll("input[type='number']");
 for (const input of numberInputs){
     input.addEventListener("change", () => {
-        input.value = input.value.replace(/\D/g, "");
+        input.value = input.value.replace(/[^.\d]/g, "");
     });
 }
 

@@ -47,10 +47,3 @@ document.querySelector("#mod_download").addEventListener("click", async () => {
     }
     return document.querySelector("#mod_download").innerText = "Download your mod!"
 });
-
-/* Before unload save warning */
-window.onbeforeunload = e => {
-    let event = e || window.event;
-    if (event) e.returnValue = "Unsaved changes"; // Firefox
-    return "Unsaved changes"; // Safari
-};

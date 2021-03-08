@@ -1,5 +1,9 @@
+
 class ItemManager {
-    constructor(elementsList){ this.items = []; this.elementsList = elementsList }
+    constructor(elementsList){ 
+        this.items = localStorage.getItem("items") != undefined ? JSON.parse(localStorage.getItem("items")) : [];
+        this.elementsList = elementsList 
+    }
 
     load(){
         this.elementsList.innerHTML = "";
@@ -31,10 +35,13 @@ class ItemManager {
 
         const deleteButtons = document.querySelectorAll(".deleteElement");
         for (const deleteBtn of deleteButtons){ deleteBtn.addEventListener("click", () => this.delete(deleteBtn.dataset.close)); }
+        window.localStorage.setItem("items", JSON.stringify(this.items));
     }
 
     delete(index){
         this.items.splice(index, 1);
+
+        window.localStorage.setItem("items", JSON.stringify(this.items));
         return this.load();
     }
 
@@ -43,6 +50,13 @@ class ItemManager {
             category: category,
             data: item
         });
+
+        window.localStorage.setItem("items", JSON.stringify(this.items));
+        return this.load();
+    }
+
+    clear(){
+        this.items = [];
         return this.load();
     }
 }

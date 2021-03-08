@@ -9,10 +9,10 @@ const _ItemManager = new ItemManager(elementsList);
 
 /* Files */
 const files = {
-    weapon: {
-        thumbnail_file: new FileInputHandler("#weapon_thumbnail", "#weapon_thumbnail_file", true),
-        sprite_file: new FileInputHandler("#weapon_sprite", "#weapon_sprite_file", true),
-        sound_file: new FileInputHandler("#weapon_shotsound", "#weapon_shotsound_file", true)
+    firearm: {
+        thumbnail_file: new FileInputHandler("#firearm_thumbnail", "#firearm_thumbnail_file", true),
+        sprite_file: new FileInputHandler("#firearm_sprite", "#firearm_sprite_file", true),
+        sound_file: new FileInputHandler("#firearm_shotsound", "#firearm_shotsound_file", true)
     },
 
     explosive: {
@@ -30,6 +30,11 @@ const files = {
     object: {
         thumbnail_file: new FileInputHandler("#object_thumbnail", "#object_thumbnail_file", true),
         sprite_file: new FileInputHandler("#object_sprite", "#object_sprite_file", true)
+    },
+
+    melee: {
+        thumbnail_file: new FileInputHandler("#melee_thumbnail", "#melee_thumbnail_file", true),
+        sprite_file: new FileInputHandler("#melee_sprite", "#melee_sprite_file", true)
     }
 }
 
@@ -44,7 +49,7 @@ function checkInputs(divID){
 
 
 /* Element Selection */
-const availableElements = ["Click to select a type", "Weapon", "Explosive", "Entity", "Object"];
+const availableElements = ["Click to select a type", "Firearm", "Explosive", "Entity", "Object", "Melee"];
 for (const option of availableElements){
     const selectOption = document.createElement("option");
     selectOption.value = option; selectOption.innerText = option;
@@ -68,10 +73,11 @@ document.querySelector("#createElement select:first-of-type").addEventListener("
 /* Item Saving */
 const itemSaveButtons = document.querySelectorAll("#createElement button.save");
 const categories = {
-    weapon: "Firearms",
+    firearm: "Firearms",
     explosive: "Explosives",
     entity: "Entities",
-    object: "Misc."
+    object: "Misc.",
+    melee: "Melee"
 }
 
 for (const button of itemSaveButtons){

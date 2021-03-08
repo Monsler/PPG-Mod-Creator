@@ -16,6 +16,11 @@ class FileInputHandler {
                 return this.button.innerText = `PLEASE Select ${extensions.join("/")} file`;
             }
 
+            if(this.file.files[0].size > 1048576){
+                this.reset();
+                return this.button.innerText = "Sorry, your file is too big (1MB max)";
+            }
+
             if(this.file.files[0] == undefined) return this.button.innerText = this.baseText;
             if(changeText) return this.button.innerText = filename;
         });

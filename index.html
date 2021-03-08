@@ -43,7 +43,7 @@
                 <h1>Create A New Element</h1>
                 <div><h2>Element Type</h2><select></select></div>
 
-                <div id="weapon">
+                <div id="firearm">
                     <h1>Firearm Creation</h1>
                     <ul>
                         <li>
@@ -65,18 +65,18 @@
                         </li>
                         <li>
                             <span>Firearm Thumbnail</span>
-                            <input type="file" id="weapon_thumbnail_file" accept=".png">
-                            <button id="weapon_thumbnail">Select .png file</button>
+                            <input type="file" id="firearm_thumbnail_file" accept=".png">
+                            <button id="firearm_thumbnail">Select .png file</button>
                         </li>
                         <li>
                             <span>Firearm Sprite (Recommended Size: Under 100x100 px)</span>
-                            <input type="file" id="weapon_sprite_file" accept=".png">
-                            <button id="weapon_sprite">Select .png file</button>
+                            <input type="file" id="firearm_sprite_file" accept=".png">
+                            <button id="firearm_sprite">Select .png file</button>
                         </li>
                         <li>
                             <span>Firearm Shotsound</span>
-                            <input type="file" id="weapon_shotsound_file" accept=".wav, .mp3">
-                            <button id="weapon_shotsound">Select .wav/.mp3 file</button>
+                            <input type="file" id="firearm_shotsound_file" accept=".wav, .mp3">
+                            <button id="firearm_shotsound">Select .wav/.mp3 file</button>
                         </li>
                         <li>
                             <span>Firearm Damage</span>
@@ -84,7 +84,7 @@
                         </li>
                     </ul>
                     <span class="warning"></span>
-                    <button data-item="weapon" class="save">Save Firearm</button>
+                    <button data-item="firearm" class="save">Save Firearm</button>
                 </div>
 
                 <div id="explosive">
@@ -196,6 +196,41 @@
                     </ul>
                     <span class="warning"></span>
                     <button data-item="object" class="save">Save Object</button>
+                </div>
+
+                <div id="melee">
+                    <h1>Melee Weapon Creator</h1>
+                    <ul>
+                        <li>
+                            <span>Melee Type</span>
+                            <select class="type">
+                                <option value="Baseball Bat">Baseball Bat</option>
+                                <option value="Knife">Knife</option>
+                                <option value="Sword">Sword</option>
+                                <option value="Hammer">Hammer</option>
+                            </select>
+                        </li>
+                        <li>
+                            <span>Melee Name</span>
+                            <input type="text" class="name">
+                        </li>
+                        <li>
+                            <span>Melee Description</span>
+                            <input type="text" class="description">
+                        </li>
+                        <li>
+                            <span>Melee Thumbnail</span>
+                            <input type="file" id="melee_thumbnail_file" accept=".png">
+                            <button id="melee_thumbnail">Select .png file</button>
+                        </li>
+                        <li>
+                            <span>Melee Sprite (Recommended Size: Under 100x100 px)</span>
+                            <input type="file" id="melee_sprite_file" accept=".png">
+                            <button id="melee_sprite">Select .png file</button>
+                        </li>
+                    </ul>
+                    <span class="warning"></span>
+                    <button data-item="melee" class="save">Save Melee</button>
                 </div>
             </section>
 

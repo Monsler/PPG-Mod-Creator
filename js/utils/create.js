@@ -46,7 +46,11 @@ function checkInputs(divID){
     for (const input of inputs){ if(input.value.replace(/ /g, "") == "") return false; }
     return true;
 }
-
+function characterTestsInputs(divID){
+    const inputs = document.querySelectorAll(`${divID} input[type="text"]`);
+    for (const input of inputs){ if(/[^a-zA-Z0-9]/.test(input.value)) return false; }
+    return true;
+}
 
 /* Element Selection */
 const availableElements = ["Click to select a type", "Firearm", "Explosive", "Entity", "Object", "Melee"];
@@ -85,6 +89,9 @@ for (const button of itemSaveButtons){
         const itemToSave = button.dataset.item;
         const filesInput = files[itemToSave];
         let newItem;
+
+        if(!checkInputs(`#${itemToSave}`)) return document.querySelector(`#${itemToSave} .warning`).innerHTML = "Please fill all the inputs.";
+        if(!characterTestsInputs(`#${itemToSave}`)) return document.querySelector(`#${itemToSave} .warning`).innerHTML = "Please do not use special characters.";
         
         if(button.dataset.item != "entity"){
             newItem = {
@@ -106,8 +113,6 @@ for (const button of itemSaveButtons){
 
 
         const inputsNotFile = document.querySelectorAll(`#${itemToSave} input:not([type=file])`);
-        if(!checkInputs(`#${itemToSave}`)) return document.querySelector(`#${itemToSave} .warning`).innerHTML = "Please fill all the inputs.";
-
         for (const input of inputsNotFile){
             const inputClass = input.classList[0];
             newItem[inputClass] = input.value

@@ -26,112 +26,128 @@ class Compiler {
         }
     }
 
-    compileObject(item){
-        this.modApiRegistered += `
-        ModAPI.Register(
-            new Modification()
-            {
-                OriginalItem = ModAPI.FindSpawnable("Metal Cube"),
-                NameOverride = "${item.data.name}",
-                DescriptionOverride = "${item.data.description}",
-                CategoryOverride = ModAPI.FindCategory("Misc."),
-                ThumbnailOverride = ModAPI.LoadSprite("Thumbnails/${(item.data.name).replace(/ /g, "-")}-thumb.png"),
-                AfterSpawn = (Instance) =>
+    compile = {
+        Misc: (item) => {
+            this.modApiRegistered += `
+            ModAPI.Register(
+                new Modification()
                 {
-                    Instance.GetComponent<SpriteRenderer>().sprite = ModAPI.LoadSprite("Sprites/${(item.data.name).replace(/ /g, "-")}.png");
-                    Instance.FixColliders();
-                }
-            }
-        );`;
-    }
-
-    compileEntity(item){
-        this.modApiRegistered += `
-        ModAPI.Register(
-            new Modification()
-            {
-                OriginalItem = ModAPI.FindSpawnable("${item.data.type}"),
-                NameOverride = "${item.data.name}",
-                DescriptionOverride = "${item.data.description}",
-                CategoryOverride = ModAPI.FindCategory("Entities"),
-                ThumbnailOverride = ModAPI.LoadSprite("Thumbnails/${(item.data.name).replace(/ /g, "-")}-thumb.png"),
-                AfterSpawn = (Instance) =>
-                {
-                    var skin = ModAPI.LoadTexture("Sprites/${(item.data.name).replace(/ /g, "-")}-skin.png");
-                    var flesh = ModAPI.LoadTexture("Sprites/${(item.data.name).replace(/ /g, "-")}-flesh.png");
-                    var bone = ModAPI.LoadTexture("Sprites/${(item.data.name).replace(/ /g, "-")}-bone.png");
-
-                    var person = Instance.GetComponent<PersonBehaviour>();
-                    person.SetBodyTextures(skin, flesh, bone, 1);
-                }
-            }
-        );`;
-    }
-
-    compileExplosive(item){
-        this.modApiRegistered += `
-        ModAPI.Register(
-            new Modification()
-            {
-                OriginalItem = ModAPI.FindSpawnable("${item.data.type}"),
-                NameOverride = "${item.data.name}",
-                DescriptionOverride = "${item.data.description}",
-                CategoryOverride = ModAPI.FindCategory("Explosives"),
-                ThumbnailOverride = ModAPI.LoadSprite("Thumbnails/${(item.data.name).replace(/ /g, "-")}-thumb.png"),
-                AfterSpawn = (Instance) =>
-                {
-                    Instance.GetComponent<SpriteRenderer>().sprite = ModAPI.LoadSprite("Sprites/${(item.data.name).replace(/ /g, "-")}.png");
-                    ExplosiveBehaviour explobehaviour = Instance.GetComponent(typeof(ExplosiveBehaviour)) as ExplosiveBehaviour;
-                    explobehaviour.Range = ${item.data.range}f;
-                    explobehaviour.Delay = ${item.data.delay}f;
-                    Instance.FixColliders();
-                }
-            }
-        );`;
-    }
-
-    compileWeapon(item) {
-        this.modApiRegistered += `
-        ModAPI.Register(
-            new Modification()
-            {
-                OriginalItem = ModAPI.FindSpawnable("${item.data.type}"),
-                NameOverride = "${item.data.name}",
-                DescriptionOverride = "${item.data.description}",
-                CategoryOverride = ModAPI.FindCategory("Firearms"),
-                ThumbnailOverride = ModAPI.LoadSprite("Thumbnails/${(item.data.name).replace(/ /g, "-")}-thumb.png"),
-                AfterSpawn = (Instance) =>
-                {
-                    Instance.GetComponent<SpriteRenderer>().sprite = ModAPI.LoadSprite("Sprites/${(item.data.name).replace(/ /g, "-")}.png");
-                    var firearm = Instance.GetComponent<FirearmBehaviour>();
-
-                    Cartridge customCartridge = ModAPI.FindCartridge("9mm");
-                    customCartridge.name = "${item.data.name} - Cartridge";
-                    customCartridge.Damage *= ${item.data.damage}f;
-                    customCartridge.StartSpeed *= 1.5f;
-                    customCartridge.PenetrationRandomAngleMultiplier *= 0.5f;
-                    customCartridge.Recoil *= 0.7f;
-                    customCartridge.ImpactForce *= ${item.data.damage}f;
-
-                    firearm.Cartridge = customCartridge;
-
-                    firearm.ShotSounds = new AudioClip[]
+                    OriginalItem = ModAPI.FindSpawnable("Metal Cube"),
+                    NameOverride = "${item.data.name}",
+                    DescriptionOverride = "${item.data.description}",
+                    CategoryOverride = ModAPI.FindCategory("Misc."),
+                    ThumbnailOverride = ModAPI.LoadSprite("Thumbnails/${(item.data.name).replace(/ /g, "-")}-thumb.png"),
+                    AfterSpawn = (Instance) =>
                     {
-                        ModAPI.LoadSound("Sounds/${(item.data.name).replace(/ /g, "-")}.mp3")
-                    };
-                    Instance.FixColliders();
+                        Instance.GetComponent<SpriteRenderer>().sprite = ModAPI.LoadSprite("Sprites/${(item.data.name).replace(/ /g, "-")}.png");
+                        Instance.FixColliders();
+                    }
                 }
-            }
-    );`;
+            );`;
+        },
+
+        Melee: (item) => {
+            this.modApiRegistered += `
+            ModAPI.Register(
+                new Modification()
+                {
+                    OriginalItem = ModAPI.FindSpawnable("${item.data.type}"),
+                    NameOverride = "${item.data.name}",
+                    DescriptionOverride = "${item.data.description}",
+                    CategoryOverride = ModAPI.FindCategory("Melee"),
+                    ThumbnailOverride = ModAPI.LoadSprite("Thumbnails/${(item.data.name).replace(/ /g, "-")}-thumb.png"),
+                    AfterSpawn = (Instance) =>
+                    {
+                        Instance.GetComponent<SpriteRenderer>().sprite = ModAPI.LoadSprite("Sprites/${(item.data.name).replace(/ /g, "-")}.png");
+                        Instance.FixColliders();
+                    }
+                }
+            );`;
+        },
+
+        Entities: (item) => {
+            this.modApiRegistered += `
+            ModAPI.Register(
+                new Modification()
+                {
+                    OriginalItem = ModAPI.FindSpawnable("${item.data.type}"),
+                    NameOverride = "${item.data.name}",
+                    DescriptionOverride = "${item.data.description}",
+                    CategoryOverride = ModAPI.FindCategory("Entities"),
+                    ThumbnailOverride = ModAPI.LoadSprite("Thumbnails/${(item.data.name).replace(/ /g, "-")}-thumb.png"),
+                    AfterSpawn = (Instance) =>
+                    {
+                        var skin = ModAPI.LoadTexture("Sprites/${(item.data.name).replace(/ /g, "-")}-skin.png");
+                        var flesh = ModAPI.LoadTexture("Sprites/${(item.data.name).replace(/ /g, "-")}-flesh.png");
+                        var bone = ModAPI.LoadTexture("Sprites/${(item.data.name).replace(/ /g, "-")}-bone.png");
+    
+                        var person = Instance.GetComponent<PersonBehaviour>();
+                        person.SetBodyTextures(skin, flesh, bone, 1);
+                    }
+                }
+            );`;
+        },
+
+        Explosives: (item) => {
+            this.modApiRegistered += `
+            ModAPI.Register(
+                new Modification()
+                {
+                    OriginalItem = ModAPI.FindSpawnable("${item.data.type}"),
+                    NameOverride = "${item.data.name}",
+                    DescriptionOverride = "${item.data.description}",
+                    CategoryOverride = ModAPI.FindCategory("Explosives"),
+                    ThumbnailOverride = ModAPI.LoadSprite("Thumbnails/${(item.data.name).replace(/ /g, "-")}-thumb.png"),
+                    AfterSpawn = (Instance) =>
+                    {
+                        Instance.GetComponent<SpriteRenderer>().sprite = ModAPI.LoadSprite("Sprites/${(item.data.name).replace(/ /g, "-")}.png");
+                        ExplosiveBehaviour explobehaviour = Instance.GetComponent(typeof(ExplosiveBehaviour)) as ExplosiveBehaviour;
+                        explobehaviour.Range = ${item.data.range}f;
+                        explobehaviour.Delay = ${item.data.delay}f;
+                        Instance.FixColliders();
+                    }
+                }
+            );`;
+        },
+
+        Firearms: (item) => {
+            this.modApiRegistered += `
+            ModAPI.Register(
+                new Modification()
+                {
+                    OriginalItem = ModAPI.FindSpawnable("${item.data.type}"),
+                    NameOverride = "${item.data.name}",
+                    DescriptionOverride = "${item.data.description}",
+                    CategoryOverride = ModAPI.FindCategory("Firearms"),
+                    ThumbnailOverride = ModAPI.LoadSprite("Thumbnails/${(item.data.name).replace(/ /g, "-")}-thumb.png"),
+                    AfterSpawn = (Instance) =>
+                    {
+                        Instance.GetComponent<SpriteRenderer>().sprite = ModAPI.LoadSprite("Sprites/${(item.data.name).replace(/ /g, "-")}.png");
+                        var firearm = Instance.GetComponent<FirearmBehaviour>();
+    
+                        Cartridge customCartridge = ModAPI.FindCartridge("9mm");
+                        customCartridge.name = "${item.data.name} - Cartridge";
+                        customCartridge.Damage *= ${item.data.damage}f;
+                        customCartridge.StartSpeed *= 1.5f;
+                        customCartridge.PenetrationRandomAngleMultiplier *= 0.5f;
+                        customCartridge.Recoil *= 0.7f;
+                        customCartridge.ImpactForce *= ${item.data.damage}f;
+    
+                        firearm.Cartridge = customCartridge;
+    
+                        firearm.ShotSounds = new AudioClip[]
+                        {
+                            ModAPI.LoadSound("Sounds/${(item.data.name).replace(/ /g, "-")}.mp3")
+                        };
+                        Instance.FixColliders();
+                    }
+                }
+            );`;
+        }
     }
 
-    compile() {
-        for (const item of this.items) {
-            if (item.category == "Firearms") this.compileWeapon(item);
-            if (item.category == "Explosives") this.compileExplosive(item);
-            if(item.category == "Entities") this.compileEntity(item);
-            if(item.category == "Misc.") this.compileObject(item);
-        }
+    start() {
+        for (const item of this.items) { this.compile[item.category.replace(".", "")](item); }
         return this.createZipFile();
     }
 

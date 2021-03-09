@@ -40,7 +40,7 @@ document.querySelector("#mod_download").addEventListener("click", async () => {
 
     document.querySelector("#mod_download").innerText = "Generating your mod! Wait a few minute.";
     try {
-        await compiler.compile();
+        await compiler.start();
     } catch(e) {
         console.log(e);
         document.querySelector("#settings_warning").innerHTML = "Ah... Something bad happened, try again!";

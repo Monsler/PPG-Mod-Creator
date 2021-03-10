@@ -1,9 +1,12 @@
+// Allows us to get the base64 uri from an image element. Useful uh?
 function getBase64Image(img) {
     const canvas = document.createElement("canvas");
-    canvas.width = img.width;
-    canvas.height = img.height;
+        canvas.width = img.width;
+        canvas.height = img.height;
+
     const ctx = canvas.getContext("2d");
-    ctx.drawImage(img, 0, 0);
+        ctx.drawImage(img, 0, 0);
+
     const dataURL = canvas.toDataURL("image/png");
     return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
 }
@@ -26,7 +29,7 @@ class Compiler {
         }
     }
 
-    compile = {
+    compile = { // Contains the code snippets to compile the mod. Is it not very optimized but it works at the moment without making the browser
         Misc: (item) => {
             this.modApiRegistered += `
             ModAPI.Register(
@@ -154,11 +157,13 @@ class Compiler {
     createZipFile() {
         return new Promise(async (res, rej) => {
             try {
+                // Create the zip archive and folders inside
                 const zip = new JSZip();
                 const sounds = zip.folder("Sounds");
                 const thumbnails = zip.folder("Thumbnails");
                 const sprites = zip.folder("Sprites");
 
+                // Generates the image files in the zip
                 for (const item of this.items) {
                     if(item.category == "Entities"){
                         thumbnails.file(`${(item.data.name).replace(/ /g, "-")}-thumb.png`, item.data.thumbnail.replace(/^data:image\/(png|jpg);base64,/, ""), { base64: true });
@@ -192,12 +197,13 @@ class Compiler {
     
                 // Generates mod.json
                 zip.file("mod.json", JSON.stringify(this.modjson));
+
                 // Downloads json
                 const content = await zip.generateAsync({ type: "blob" });
                 saveAs(content, `${this.modjson.Name}.zip`);
                 return res();
             } catch(e) {
-                return rej(e);
+                return rej(e); // Reject if an error occured
             }
         });
     }

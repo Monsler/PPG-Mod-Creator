@@ -1,5 +1,5 @@
 /* File Input Handler */
-class FileInputHandler {
+class FileInputHandler { // Will handle the custom file input I made
     constructor(queryButton, queryFile, changeText=false){
         this.button = document.querySelector(queryButton);
         this.file = document.querySelector(queryFile);

@@ -4,11 +4,11 @@ const elementsList = document.querySelector("#createdElements");
 
 
 /* Savins Section */
-const _ItemManager = new ItemManager(elementsList);
+const _ItemManager = new ItemManager(elementsList); // Defines a new item manager
 
 
 /* Files */
-const files = {
+const files = { // All the files inputs required.
     firearm: {
         thumbnail_file: new FileInputHandler("#firearm_thumbnail", "#firearm_thumbnail_file", true),
         sprite_file: new FileInputHandler("#firearm_sprite", "#firearm_sprite_file", true),
@@ -38,17 +38,15 @@ const files = {
     }
 }
 
-function resetFiles(object){ 
+function resetFiles(object){  // Resets the file inputs
     for (const file of Object.keys(object)){ object[file].reset(); }
 }
-function checkInputs(divID){
+function checkInputs(divID){ // Checks if all the inputs are filled
     const inputs = document.querySelectorAll(`${divID} input`);
-    for (const input of inputs){ if(input.value.replace(/ /g, "") == "") return false; }
-    return true;
-}
-function characterTestsInputs(divID){
-    const inputs = document.querySelectorAll(`${divID} input[type="text"]`);
-    for (const input of inputs){ if(/[^a-zA-Z0-9]/.test(input.value)) return false; }
+    for (const input of inputs){ 
+        if(input.value.replace(/ /g, "") == "") return "Please fill all of the inputs."; 
+        if(input.type == "text" && /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(input.value)) return "Please do not use special characters.";
+    }
     return true;
 }
 
@@ -58,7 +56,7 @@ for (const option of availableElements){
     const selectOption = document.createElement("option");
     selectOption.value = option; selectOption.innerText = option;
     document.querySelector("#createElement select:first-of-type").appendChild(selectOption);
-}
+} // Will append all the available elements in the <select> dom element
 
 
 /* Will handle the creator changes */
@@ -71,7 +69,7 @@ document.querySelector("#createElement select:first-of-type").addEventListener("
     if(!elementPage) return null;
 
     elementPage.classList.add("active");
-});
+}); // Changes the "page" when selecting an element
 
 
 /* Item Saving */
@@ -82,17 +80,18 @@ const categories = {
     entity: "Entities",
     object: "Misc.",
     melee: "Melee"
-}
+} // Will help to find the correct type from the div id.
 
 for (const button of itemSaveButtons){
-    button.addEventListener("click", async () => {
+    button.addEventListener("click", async () => { // Saves the current item
         const itemToSave = button.dataset.item;
         const filesInput = files[itemToSave];
         let newItem;
 
-        if(!checkInputs(`#${itemToSave}`)) return document.querySelector(`#${itemToSave} .warning`).innerHTML = "Please fill all the inputs.";
-        if(!characterTestsInputs(`#${itemToSave}`)) return document.querySelector(`#${itemToSave} .warning`).innerHTML = "Please do not use special characters.";
+        // Checks about the inputs
+        if(typeof checkInputs(`#${itemToSave}`) != "boolean") return document.querySelector(`#${itemToSave} .warning`).innerHTML = checkInputs(`#${itemToSave}`);
         
+        // I need to do this if-else statement because the files are not the same for the entity
         if(button.dataset.item != "entity"){
             newItem = {
                 type: document.querySelector(`#${itemToSave} .type`).value,
@@ -112,27 +111,31 @@ for (const button of itemSaveButtons){
         }
 
 
+        // Retrieves all the inputs that are not file, and save their values in the "newItem" JSON Object
         const inputsNotFile = document.querySelectorAll(`#${itemToSave} input:not([type=file])`);
         for (const input of inputsNotFile){
             const inputClass = input.classList[0];
             newItem[inputClass] = input.value
         }
 
+        // Prevents the user from creating two items with the same name
         const avoidSameNames = _ItemManager.items.filter(item => item.data.name == newItem.name);
         if(avoidSameNames.length > 0) return alert(`The name "${newItem.name}" is already used by another of your mod elements. Please use a different name.`);
 
         
+        // Saves the item in the local storage
         _ItemManager.save({
             category: categories[itemToSave],
             item: newItem
         });
 
+        // Resets input files
         resetFiles(files[itemToSave])
         return document.querySelector("i[data-page='create']").click();
     });
 }
 
 
-_ItemManager.load();
-const items = _ItemManager.items;
+_ItemManager.load(); // Loads the item manager
+const items = _ItemManager.items; // And exports it items
 export { items, checkInputs };

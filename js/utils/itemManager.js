@@ -1,5 +1,4 @@
-
-class ItemManager {
+class ItemManager { // Allows us to store and create items in the cache.
     constructor(elementsList){ 
         this.items = localStorage.getItem("items") != undefined ? JSON.parse(localStorage.getItem("items")) : [];
         this.elementsList = elementsList 

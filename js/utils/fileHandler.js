@@ -28,7 +28,7 @@ class FileInputHandler { // Will handle the custom file input I made
     getBase64File(){
         return new Promise(res => {
             const reader = new FileReader();
-    
+
             reader.onload = e => res(e.target.result);
             reader.readAsDataURL(this.file.files[0]);
         });

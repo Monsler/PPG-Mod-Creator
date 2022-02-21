@@ -57,30 +57,30 @@
                         </li>
                         <li>
                             <span>Firearm Name</span>
-                            <input type="text" class="name">
+                            <input type="text" class="name required">
                         </li>
                         <li>
                             <span>Firearm Description</span>
-                            <input type="text" class="description">
+                            <input type="text" class="description required">
                         </li>
                         <li>
                             <span>Firearm Thumbnail</span>
-                            <input type="file" id="firearm_thumbnail_file" accept=".png">
+                            <input type="file" class="required" id="firearm_thumbnail_file" accept=".png">
                             <button id="firearm_thumbnail">Select .png file</button>
                         </li>
                         <li>
                             <span>Firearm Sprite (Recommended Size: Under 100x100 px)</span>
-                            <input type="file" id="firearm_sprite_file" accept=".png">
+                            <input type="file" class="required" id="firearm_sprite_file" accept=".png">
                             <button id="firearm_sprite">Select .png file</button>
                         </li>
                         <li>
                             <span>Firearm Shotsound</span>
-                            <input type="file" id="firearm_shotsound_file" accept=".wav, .mp3">
+                            <input type="file" class="required" id="firearm_shotsound_file" accept=".wav, .mp3">
                             <button id="firearm_shotsound">Select .wav/.mp3 file</button>
                         </li>
                         <li>
                             <span>Firearm Damage</span>
-                            <input type="number" class="damage" min="0" step="0.1" value="0.8">
+                            <input type="number" class="damage required" min="0" step="0.1" value="0.8">
                         </li>
                     </ul>
                     <span class="warning"></span>
@@ -99,29 +99,29 @@
                         </li>
                         <li>
                             <span>Explosive Name</span>
-                            <input type="text" class="name">
+                            <input type="text" class="name required">
                         </li>
                         <li>
                             <span>Explosive Description</span>
-                            <input type="text" class="description">
+                            <input type="text" class="description required">
                         </li>
                         <li>
                             <span>Explosive Thumbnail</span>
-                            <input type="file" id="explosive_thumbnail_file" accept=".png">
+                            <input type="file" class="required" id="explosive_thumbnail_file" accept=".png">
                             <button id="explosive_thumbnail">Select .png file</button>
                         </li>
                         <li>
                             <span>Explosive Sprite (Recommended Size: Under 100x100 px)</span>
-                            <input type="file" id="explosive_sprite_file" accept=".png">
+                            <input type="file" class="required" id="explosive_sprite_file" accept=".png">
                             <button id="explosive_sprite">Select .png file</button>
                         </li>
                         <li>
                             <span>Explosive Range</span>
-                            <input type="number" class="range" min="0" step="1" value="30">
+                            <input type="number" class="range required" min="0" step="1" value="30">
                         </li>
                         <li>
                             <span>Explosive Delay (In Seconds)</span>
-                            <input type="number" class="delay" min="0" step="1" value="0">
+                            <input type="number" class="delay required" min="0" step="1" value="0">
                         </li>
                     </ul>
                     <span class="warning"></span>
@@ -140,30 +140,30 @@
                         </li>
                         <li>
                             <span>Entity Name</span>
-                            <input type="text" class="name">
+                            <input type="text" class="name required">
                         </li>
                         <li>
                             <span>Entity Description</span>
-                            <input type="text" class="description">
+                            <input type="text" class="description required">
                         </li>
                         <li>
                             <span>Entity Thumbnail</span>
-                            <input type="file" id="entity_thumbnail_file" accept=".png">
+                            <input type="file" class="required" id="entity_thumbnail_file" accept=".png">
                             <button id="entity_thumbnail">Select .png file</button>
                         </li>
                         <li>
                             <span>Entity Skin (You can use this <a href="https://raw.githubusercontent.com/mestiez/ppg-snippets/master/Human%20textures/skin%20layer.png" target="_blank">texture</a> as reference)</span>
-                            <input type="file" id="entity_skin_file" accept=".png">
+                            <input type="file" class="required" id="entity_skin_file" accept=".png">
                             <button id="entity_skin">Select .png file</button>
                         </li>
                         <li>
                             <span>Entity Flesh (You can use this <a href="https://raw.githubusercontent.com/mestiez/ppg-snippets/master/Human%20textures/flesh%20layer.png" target="_blank">texture</a> as reference)</span>
-                            <input type="file" id="entity_flesh_file" accept=".png">
+                            <input type="file" class="required" id="entity_flesh_file" accept=".png">
                             <button id="entity_flesh">Select .png file</button>
                         </li>
                         <li>
                             <span>Entity Bone (You can use this <a href="https://raw.githubusercontent.com/mestiez/ppg-snippets/master/Human%20textures/bone%20layer.png" target="_blank">texture</a> as reference)</span>
-                            <input type="file" id="entity_bone_file" accept=".png">
+                            <input type="file" class="required" id="entity_bone_file" accept=".png">
                             <button id="entity_bone">Select .png file</button>
                         </li>
                     </ul>
@@ -177,20 +177,20 @@
                     <ul>
                         <li>
                             <span>Object Name</span>
-                            <input type="text" class="name">
+                            <input type="text" class="name required">
                         </li>
                         <li>
                             <span>Object Description</span>
-                            <input type="text" class="description">
+                            <input type="text" class="description required">
                         </li>
                         <li>
                             <span>Object Thumbnail</span>
-                            <input type="file" id="object_thumbnail_file" accept=".png">
+                            <input type="file" class="required" id="object_thumbnail_file" accept=".png">
                             <button id="object_thumbnail">Select .png file</button>
                         </li>
                         <li>
                             <span>Object Sprite (Recommended Size: Under 100x100 px)</span>
-                            <input type="file" id="object_sprite_file" accept=".png">
+                            <input type="file" class="required" id="object_sprite_file" accept=".png">
                             <button id="object_sprite">Select .png file</button>
                         </li>
                         <li>
@@ -236,20 +236,20 @@
                         </li>
                         <li>
                             <span>Melee Name</span>
-                            <input type="text" class="name">
+                            <input type="text" class="name required">
                         </li>
                         <li>
                             <span>Melee Description</span>
-                            <input type="text" class="description">
+                            <input type="text" class="description required">
                         </li>
                         <li>
                             <span>Melee Thumbnail</span>
-                            <input type="file" id="melee_thumbnail_file" accept=".png">
+                            <input type="file" class="required" id="melee_thumbnail_file" accept=".png">
                             <button id="melee_thumbnail">Select .png file</button>
                         </li>
                         <li>
                             <span>Melee Sprite (Recommended Size: Under 100x100 px)</span>
-                            <input type="file" id="melee_sprite_file" accept=".png">
+                            <input type="file" class="required" id="melee_sprite_file" accept=".png">
                             <button id="melee_sprite">Select .png file</button>
                         </li>
                     </ul>

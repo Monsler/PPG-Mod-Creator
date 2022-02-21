@@ -43,7 +43,7 @@ function resetFiles(object){  // Resets the file inputs
     for (const file of Object.keys(object)){ object[file].reset(); }
 }
 function checkInputs(divID){ // Checks if all the inputs are filled
-    const inputs = document.querySelectorAll(`${divID} input`);
+    const inputs = document.querySelectorAll(`${divID} input.required`);
     for (const input of inputs){ 
         if(input.value.replace(/ /g, "") == "") return "Please fill all of the inputs."; 
         if(input.type == "text" && /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(input.value)) return "Please do not use special characters.";
@@ -93,10 +93,11 @@ for (const button of itemSaveButtons){
         if(typeof checkInputs(`#${itemToSave}`) != "boolean") return document.querySelector(`#${itemToSave} .warning`).innerHTML = checkInputs(`#${itemToSave}`);
         
         // I need to do this if-else statement because the files are not the same for the entity
+        console.log(filesInput.sound_file != undefined && filesInput.sound_file.file.files[0] != undefined, filesInput.sound_file.file.files[0])
         if(button.dataset.item != "entity"){
             newItem = {
                 type: document.querySelector(`#${itemToSave} .type`).value,
-                audio: filesInput.sound_file != undefined ? await filesInput.sound_file.getBase64File() : null,
+                audio: filesInput.sound_file != undefined && filesInput.sound_file.file.files[0] != undefined ? await filesInput.sound_file.getBase64File() : null,
                 sprite: await filesInput.sprite_file.getBase64File(),
                 thumbnail: await filesInput.thumbnail_file.getBase64File()
             }
@@ -110,6 +111,7 @@ for (const button of itemSaveButtons){
                 thumbnail: await filesInput.thumbnail_file.getBase64File()
             }
         }
+        console.log(newItem)
 
         // Retrieves all the inputs/select that are not file, and save their values in the "newItem" JSON Object
         // Like that, if I ever add some fields on a page, I won't have to deal with puting them in the script as well since it's automatic.

@@ -60,6 +60,7 @@ document.querySelector("#mod_download").addEventListener("click", async () => {
     <span>Thanks for those using the website, I've seen some posts about it when I changed my username but no worries, it's still up and ready to use!</span>
     <span>I added some content as well which are pretty interesting imo. Here's a list of them</span>
     <ul>
+        <li>Fixed some requirements, so you're not forced to put an audio when creating an object.</li>
         <li>You can now change object materials and weight!</li>
         <li>You can also put a sound file in your object, which is gonna play every time you spawn them in game!</li>
         <li>Finally, you can create a custom category for your mod! I've used the script from <a href="https://github.com/Azule-RS">AZULE</a>, so thanks to him and his amazing script.</li>

@@ -193,6 +193,30 @@
                             <input type="file" id="object_sprite_file" accept=".png">
                             <button id="object_sprite">Select .png file</button>
                         </li>
+                        <li>
+                            <span>Object Weight (Will make your object heavier or lighter)</span>
+                            <select class="weight">
+                                <option value="5f">5f</option>
+                                <option value="100f">100f</option>
+                                <option value="500f">500f</option>
+                                <option value="1000f">1000f</option>
+                                <option value="10000f">10000f</option>
+                                <option value="99999f">99999f</option>
+                            </select>
+                        </li>
+                        <li>
+                            <span>Object Material</span>
+                            <select class="material">
+                                <option value="Plastic">Plastic</option>
+                                <option value="Metal">Metal</option>
+                                <option value="Wood">Wood</option>
+                            </select>
+                        </li>
+                        <li>
+                            <span>Object Spawn Sound (If you ever put one, this sound will be played when spawning the object!)</span>
+                            <input type="file" id="object_spawn_file" accept=".wav, .mp3">
+                            <button id="object_spawn">Select .wav/.mp3 file</button>
+                        </li>
                     </ul>
                     <span class="warning"></span>
                     <button data-item="object" class="save">Save Object</button>
@@ -242,6 +266,12 @@
                         <input type="text" id="mod_author" placeholder="Author Name" autocomplete="off">
                         <input type="text" id="mod_description" placeholder="Mod Description" autocomplete="off">
                         <span id="settings_warning"></span>
+
+                        <div style="margin-top: 1pc;">
+                            <input type="checkbox" id="createCategory" name="cat">
+                            <label for="cat">Makes a custom catalog icon for your mod.</label>
+                        </div>
+
                         <button id="mod_download">Download your mod!</button>
                     </div>
                     <div class="right">
@@ -256,7 +286,7 @@
             <section id="help">
                 <h1>How to use "People Playground Mod Creator"</h1>
                 <span>First of all, this mod creator is very basic, and is not intended for the creation of mods for the steam workshop.</span>
-                <span>Also, if you want to learn how to make mods from scratch, there are some useful guides on steam community, I made one on <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2298225676">this link.</a></span>
+                <span>Also, if you want to learn how to make mods from scratch, there are some useful guides on steam community.</a></span>
                 <div class="hr"></div>
                 <h1>How to create your first mod element</h1>
                 <span>

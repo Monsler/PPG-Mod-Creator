@@ -29,7 +29,8 @@ const files = { // All the files inputs required.
 
     object: {
         thumbnail_file: new FileInputHandler("#object_thumbnail", "#object_thumbnail_file", true),
-        sprite_file: new FileInputHandler("#object_sprite", "#object_sprite_file", true)
+        sprite_file: new FileInputHandler("#object_sprite", "#object_sprite_file", true),
+        sound_file: new FileInputHandler("#object_spawn", "#object_spawn_file", true)
     },
 
     melee: {
@@ -110,19 +111,18 @@ for (const button of itemSaveButtons){
             }
         }
 
-
-        // Retrieves all the inputs that are not file, and save their values in the "newItem" JSON Object
-        const inputsNotFile = document.querySelectorAll(`#${itemToSave} input:not([type=file])`);
-        for (const input of inputsNotFile){
-            const inputClass = input.classList[0];
-            newItem[inputClass] = input.value
+        // Retrieves all the inputs/select that are not file, and save their values in the "newItem" JSON Object
+        // Like that, if I ever add some fields on a page, I won't have to deal with puting them in the script as well since it's automatic.
+        const elementsNotFile = document.querySelectorAll(`#${itemToSave} *:not([type=file]):not(span):not(button):not(option)`);
+        for (const element of elementsNotFile){
+            const elementClass = element.classList[0];
+            newItem[elementClass] = element.value
         }
 
         // Prevents the user from creating two items with the same name
         const avoidSameNames = _ItemManager.items.filter(item => item.data.name == newItem.name);
         if(avoidSameNames.length > 0) return alert(`The name "${newItem.name}" is already used by another of your mod elements. Please use a different name.`);
 
-        
         // Saves the item in the local storage
         _ItemManager.save({
             category: categories[itemToSave],

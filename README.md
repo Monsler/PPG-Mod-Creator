@@ -2,8 +2,6 @@
 [PPG Mod Creator](https://cheeteau.github.io/PPG-Mod-Creator/) is a small mod creator that I created in my free time.
 The purpose of this site is not to create mods that compete with the workshop mods, it's more for people who don't want to learn how to code for creating mods. So don't expect to be able to create incredible things.
 
-**Also, there may be bugs. It's normal, the project is still new, I'll do my best to fix them as long as you report them to me.**
-
 # The Website
 If you want to create your own little mod, [here's the link.](https://cheeteau.github.io/PPG-Mod-Creator/)
 
@@ -25,7 +23,7 @@ Here's a small "To-do List" of the upcoming features
 
 # Contributing
 If you want to contribute, feel free to modify the code to pull request it.
-Btw, I know that the code may not be the most optimized, I did the best I could based on my knowledge. If you think something can be optimized or better, just do a pull request on the main branch.
+**But WARNING**, this code is not the best one, and can obviously be optimized. I don't do it myself by a lack of time but also because I'm pretty lazy.
 
 # Some Footer
 I sincerely hope that my website will help some of you to create your own simple mod.

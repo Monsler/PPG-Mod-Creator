@@ -14,7 +14,7 @@ function getBase64Image(img) {
 
 /* Compiler Class */
 class Compiler {
-    constructor(items, { name = "Generated Mod", author = "COZAX", description = "lmao" }) {
+    constructor(items, { name, author, description }) {
         this.items = items;
         this.modApiRegistered = "";
         this.modjson = {
@@ -22,15 +22,33 @@ class Compiler {
             "Author": author,
             "Description": description,
             "ModVersion": "1.0",
-            "GameVersion": "1.15",
+            "GameVersion": "1.22+",
             "ThumbnailPath": "thumb.png",
             "EntryPoint": "Mod.Mod",
-            "Scripts": ["script.cs"]
+            "Scripts": ["script.cs", "CategoryBuilder.cs"]
         }
     }
 
     compile = { // Contains the code snippets to compile the mod. Is it not very optimized but it works at the moment without making the browser
         Misc: (item) => {
+            let audioScriptIfAudio = "";
+            if (item.data.audio != null){ // If there's an audio sound
+                audioScriptIfAudio = `
+                AudioSource spawnSound = Instance.AddComponent<AudioSource>();
+                spawnSound.minDistance = 1;
+                spawnSound.maxDistance = 15;
+				spawnSound.loop = false;
+
+                AudioClip[] data = new AudioClip[]
+                {
+                    ModAPI.LoadSound("Sounds/${(item.data.name).replace(/ /g, "-")}.mp3")
+                };
+
+                spawnSound.clip = data[0];
+                spawnSound.Play();
+                `;
+            }
+
             this.modApiRegistered += `
             ModAPI.Register(
                 new Modification()
@@ -42,8 +60,15 @@ class Compiler {
                     ThumbnailOverride = ModAPI.LoadSprite("Thumbnails/${(item.data.name).replace(/ /g, "-")}-thumb.png"),
                     AfterSpawn = (Instance) =>
                     {
+
+                        Instance.GetComponent<PhysicalBehaviour>().InitialMass = ${item.data.weight};
+                        Instance.GetComponent<PhysicalBehaviour>().TrueInitialMass = ${item.data.weight};
+                        Instance.GetComponent<PhysicalBehaviour>().Properties = ModAPI.FindPhysicalProperties("${item.data.material}");
+
                         Instance.GetComponent<SpriteRenderer>().sprite = ModAPI.LoadSprite("Sprites/${(item.data.name).replace(/ /g, "-")}.png");
                         Instance.FixColliders();
+
+                        ${audioScriptIfAudio}
                     }
                 }
             );`;
@@ -149,12 +174,12 @@ class Compiler {
         }
     }
 
-    start() {
+    start(customCategory) {
         for (const item of this.items) { this.compile[item.category.replace(".", "")](item); }
-        return this.createZipFile();
+        return this.createZipFile(customCategory);
     }
 
-    createZipFile() {
+    createZipFile(customCategory) {
         return new Promise(async (res, rej) => {
             try {
                 // Create the zip archive and folders inside
@@ -179,9 +204,51 @@ class Compiler {
                     }
                 }
                 zip.file("thumb.png", getBase64Image(document.querySelector("#preview_mod_thumb")), { base64: true });
+
+                // Adds the CustomCategory.cs to create custom categories heh
+                zip.file("CategoryBuilder.cs", `
+                using System;
+                using System.Linq;
+                using System.Collections.Generic;
+                using UnityEngine;
+
+
+                public class CategoryBuilder
+                {
+                    public static void Create(string name,string description, Sprite icon)
+                    {
+                        CatalogBehaviour manager = UnityEngine.Object.FindObjectOfType<CatalogBehaviour>();
+                        if (manager.Catalog.Categories.FirstOrDefault((Category c) => c.name == name) == null)
+                        {
+                            Category category = ScriptableObject.CreateInstance<Category>();
+                            category.name = name;
+                            category.Description = description;
+                            category.Icon = icon;
+                            Category[] NewCategories = new Category[manager.Catalog.Categories.Length + 1];
+                            Category[] categories = manager.Catalog.Categories;
+                            for (int i = 0; i < categories.Length; i++)
+                            {
+                                NewCategories[i] = categories[i];
+                            }
+                            NewCategories[NewCategories.Length - 1] = category;
+                            manager.Catalog.Categories = NewCategories;
+                        }
+                    }
+
+                    /* Made in USSR
+                    AZULE */
+                }`.replace((/  |\r\n|\n|\r/gm),""));
     
                 // Generates script.cs
+                let _customCategory = "";
+                let items = this.modApiRegistered.replace((/  |\r\n|\n|\r/gm),"")
+                if (customCategory){
+                    _customCategory = `CategoryBuilder.Create("${this.modjson.Name}", "${this.modjson.Description}", ModAPI.LoadSprite("thumb.png"));`;
+                    items = items.replaceAll(/ModAPI.FindCategory\((["'])(?:(?=(\\?))\2.)*?\1\)/g, `ModAPI.FindCategory("${this.modjson.Name}")`);
+                }
+
                 zip.file("script.cs", `
+                /* This mod has been generated with PPG-Mod-Creator (https://cheeteau.github.io/PPG-Mod-Creator/). You can remove this comment if you want to, but if someone ever sees this, hi! If you ever wanna support me, feel free to go on my Ko-fi! https://ko-fi.com/cheeteau */
                 using UnityEngine;
     
                 namespace Mod
@@ -190,7 +257,9 @@ class Compiler {
                     {
                         public static void Main()
                         {
-                            ${this.modApiRegistered.replace((/  |\r\n|\n|\r/gm),"")}
+                            ${_customCategory}
+
+                            ${items}
                         }
                     }
                 }`.replace((/  |\r\n|\n|\r/gm),""));

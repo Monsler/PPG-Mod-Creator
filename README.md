@@ -1,11 +1,11 @@
 # What is PPG Mod Creator
-[PPG Mod Creator](https://cozax.github.io/PPG-Mod-Creator/) is a small mod creator that I created in my free time.
+[PPG Mod Creator](https://cheeteau.github.io/PPG-Mod-Creator/) is a small mod creator that I created in my free time.
 The purpose of this site is not to create mods that compete with the workshop mods, it's more for people who don't want to learn how to code for creating mods. So don't expect to be able to create incredible things.
 
 **Also, there may be bugs. It's normal, the project is still new, I'll do my best to fix them as long as you report them to me.**
 
 # The Website
-If you want to create your own little mod, [here's the link.](https://cozax.github.io/PPG-Mod-Creator/)
+If you want to create your own little mod, [here's the link.](https://cheeteau.github.io/PPG-Mod-Creator/)
 
 Also, here's some screenshots of the website.
 

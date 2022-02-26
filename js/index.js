@@ -65,6 +65,7 @@ document.querySelector("#mod_download").addEventListener("click", async () => {
         <li>You can also put a sound file in your object, which is gonna play every time you spawn them in game!</li>
         <li>Finally, you can create a custom category for your mod! I've used the script from <a href="https://github.com/Azule-RS">AZULE</a>, so thanks to him and his amazing script.</li>
     </ul>
+    <span>If bugs are happening, please open an issue on github or contact me through steam, and explain me how to achieve the bug in details so I can take a look at it.</span>
     <span>If you're actually sick enough, you can also try to optimize the source code of this website on github.</span>
     <span>It's kinda trash tbh, and surely not optimized at all but it still does the job. If you try to optimize things, I wish you good luck and a lot of coffee.</span>
     <h4>You can also submit your ideas!</h4>

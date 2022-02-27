@@ -166,6 +166,14 @@
                             <input type="file" class="required" id="entity_bone_file" accept=".png">
                             <button id="entity_bone">Select .png file</button>
                         </li>
+                        <li>
+                            <span>Entity health (Beware, shooting in important parts of the body as the head will still kill it, no matter how high its health is set.)</span>
+                            <input type="number" value="100" class="health required">
+                        </li>
+                        <li>
+                            <span>Entity regeneration speed</span>
+                            <input type="number" value="0" class="regenSpeed required">
+                        </li>
                     </ul>
                     <span class="warning"></span>
                     <button data-item="entity" class="save">Save Entity</button>

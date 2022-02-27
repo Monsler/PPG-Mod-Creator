@@ -93,7 +93,6 @@ for (const button of itemSaveButtons){
         if(typeof checkInputs(`#${itemToSave}`) != "boolean") return document.querySelector(`#${itemToSave} .warning`).innerHTML = checkInputs(`#${itemToSave}`);
         
         // I need to do this if-else statement because the files are not the same for the entity
-        console.log(filesInput.sound_file != undefined && filesInput.sound_file.file.files[0] != undefined, filesInput.sound_file.file.files[0])
         if(button.dataset.item != "entity"){
             newItem = {
                 type: document.querySelector(`#${itemToSave} .type`).value,
@@ -111,7 +110,6 @@ for (const button of itemSaveButtons){
                 thumbnail: await filesInput.thumbnail_file.getBase64File()
             }
         }
-        console.log(newItem)
 
         // Retrieves all the inputs/select that are not file, and save their values in the "newItem" JSON Object
         // Like that, if I ever add some fields on a page, I won't have to deal with puting them in the script as well since it's automatic.

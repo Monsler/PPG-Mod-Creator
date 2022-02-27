@@ -50,7 +50,7 @@ document.querySelector("#mod_download").addEventListener("click", async () => {
 });
 
 
-/* Update alert things */
+/* Update alert things, I know I could put it directly in the html or do some more elaborate stuff but I'm lazy. */
 (() => {
 
     const updateContent = `
@@ -60,9 +60,11 @@ document.querySelector("#mod_download").addEventListener("click", async () => {
     <span>Thanks for those using the website, I've seen some posts about it when I changed my username but no worries, it's still up and ready to use!</span>
     <span>I added some content as well which are pretty interesting imo. Here's a list of them</span>
     <ul>
+        <li>Fixed the save button, now it's supposed to work.</li>
         <li>Fixed some requirements, so you're not forced to put an audio when creating an object.</li>
-        <li>You can now change object materials and weight!</li>
-        <li>You can also put a sound file in your object, which is gonna play every time you spawn them in game!</li>
+        <li>You can now change entities' health and regeneration speed.</li>
+        <li>You can now change object materials and weight.</li>
+        <li>You can also put a sound file in your object, which is gonna play every time you spawn them in game.</li>
         <li>Finally, you can create a custom category for your mod! I've used the script from <a href="https://github.com/Azule-RS">AZULE</a>, so thanks to him and his amazing script.</li>
     </ul>
     <span style="color: #ff2b2b;"><b>If bugs are happening, please open an issue on github or contact me through steam, and explain me how to achieve the bug in details so I can take a look at it.</b></span>

@@ -94,6 +94,7 @@ class Compiler {
         },
 
         Entities: (item) => {
+            console.log("ITEM = ", item)
             this.modApiRegistered += `
             ModAPI.Register(
                 new Modification()
@@ -105,12 +106,20 @@ class Compiler {
                     ThumbnailOverride = ModAPI.LoadSprite("Thumbnails/${(item.data.name).replace(/ /g, "-")}-thumb.png"),
                     AfterSpawn = (Instance) =>
                     {
+
                         var skin = ModAPI.LoadTexture("Sprites/${(item.data.name).replace(/ /g, "-")}-skin.png");
                         var flesh = ModAPI.LoadTexture("Sprites/${(item.data.name).replace(/ /g, "-")}-flesh.png");
                         var bone = ModAPI.LoadTexture("Sprites/${(item.data.name).replace(/ /g, "-")}-bone.png");
     
                         var person = Instance.GetComponent<PersonBehaviour>();
                         person.SetBodyTextures(skin, flesh, bone, 1);
+
+                        foreach (var limb in person.Limbs)
+                        {
+                            limb.Health = ${item.data.health}f;
+                            limb.InitialHealth = ${item.data.health}f;
+                            limb.RegenerationSpeed += ${item.data.regenSpeed}f;
+                        }
                     }
                 }
             );`;

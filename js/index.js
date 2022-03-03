@@ -55,23 +55,21 @@ document.querySelector("#mod_download").addEventListener("click", async () => {
 
     const updateContent = `
     <h2>UPDATE</h2>
-    <span>Hey modder! I've updated the website and added some new content you may like!</span>
-    <span>First of all, sorry for not updating this a lot. I've been very busy with school and personal stuff that happened to me.</span>
-    <span>Thanks for those using the website, I've seen some posts about it when I changed my username but no worries, it's still up and ready to use!</span>
-    <span>I added some content as well which are pretty interesting imo. Here's a list of them</span>
+    <span>Here's the latest change logs:</span>
     <ul>
-        <li>Fixed the save button, now it's supposed to work.</li>
-        <li>Fixed some requirements, so you're not forced to put an audio when creating an object.</li>
-        <li>You can now change entities' health and regeneration speed.</li>
-        <li>You can now change object materials and weight.</li>
-        <li>You can also put a sound file in your object, which is gonna play every time you spawn them in game.</li>
-        <li>Finally, you can create a custom category for your mod! I've used the script from <a href="https://github.com/Azule-RS">AZULE</a>, so thanks to him and his amazing script.</li>
+        <li><span class="detail">[03/3/2022]</span> Added more weapon types.</li>
+        <li><span class="detail">[02/28/2022]</span> Fixed the save button, now it's supposed to work.</li>
+        <li><span class="detail">[02/27/2022]</span> Fixed some requirements, so you're not forced to put an audio when creating an object.</li>
+        <li><span class="detail">[02/22/2022]</span> You can now change entities' health and regeneration speed.</li>
+        <li><span class="detail">[02/22/2022]</span> You can now change object materials and weight.</li>
+        <li><span class="detail">[02/22/2022]</span> You can also put a sound file in your object, which is gonna play every time you spawn them in game.</li>
     </ul>
+    <span>Custom category provided with the script from <a href="https://github.com/Azule-RS">AZULE</a>, so thanks to him and his amazing script.</span>
     <span style="color: #ff2b2b;"><b>If bugs are happening, please open an issue on github or contact me through steam, and explain me how to achieve the bug in details so I can take a look at it.</b></span>
     <span>If you're actually sick enough, you can also try to optimize the source code of this website on github.</span>
     <span>It's kinda trash tbh, and surely not optimized at all but it still does the job. If you try to optimize things, I wish you good luck and a lot of coffee.</span>
     <h4>You can also submit your ideas!</h4>
-    <span>If you wanna help me, give me some of your ideas in <a href="https://docs.google.com/forms/d/e/1FAIpQLScbHfIQZGH6lYh36BHUNsR70Eo5v74Qu9GzSbI-WFvuDAbsFA/viewform">this form below</a>.
+    <span>If you wanna help me, give me some of your ideas in <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLScbHfIQZGH6lYh36BHUNsR70Eo5v74Qu9GzSbI-WFvuDAbsFA/viewform">this form below</a>.</span>
     <span>Finally, if you wanna support me (and not my shitty code), you can still buy me a coffee <a href="https://ko-fi.com/cheeteau">here!</a></span>
     <span>Thank you for reading and have fun modding stuff!</span>
     `

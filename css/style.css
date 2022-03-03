@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
 
 /* Global html elements */
+::-webkit-scrollbar {width: 5px;}
+::-webkit-scrollbar-track {background-color: rgba(227, 227, 227, 0.2);}
+::-webkit-scrollbar-thumb {background: rgba(241, 241, 241, 0.2);}
+
 * {outline: none}
 body {
     margin: 0;
@@ -117,6 +121,10 @@ main article section {
     color: white;
     flex-direction: column;
 }
+.all {
+    height: 90vh;
+    overflow: auto;
+}
 
 h1 {font-size: 3vh;}
 
@@ -127,7 +135,7 @@ h1 {font-size: 3vh;}
     align-items: center;
 }
 
-.detail {opacity: .5;text-transform: capitalize;}
+.detail {opacity: .3;text-transform: capitalize;}
 
 #warning {margin: .5pc 0;}
 

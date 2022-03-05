@@ -57,12 +57,12 @@ document.querySelector("#mod_download").addEventListener("click", async () => {
     <h2>UPDATE</h2>
     <span>Here's the latest change logs:</span>
     <ul>
-        <li><span class="detail">[03/3/2022]</span> Added more weapon types.</li>
+        <li><span class="detail">[03/05/2022]</span> Added more explosive and weapon types.</li>
+        <li><span class="detail">[03/03/2022]</span> Added more weapon types.</li>
         <li><span class="detail">[02/28/2022]</span> Fixed the save button, now it's supposed to work.</li>
         <li><span class="detail">[02/27/2022]</span> Fixed some requirements, so you're not forced to put an audio when creating an object.</li>
         <li><span class="detail">[02/22/2022]</span> You can now change entities' health and regeneration speed.</li>
         <li><span class="detail">[02/22/2022]</span> You can now change object materials and weight.</li>
-        <li><span class="detail">[02/22/2022]</span> You can also put a sound file in your object, which is gonna play every time you spawn them in game.</li>
     </ul>
     <span>Custom category provided with the script from <a href="https://github.com/Azule-RS">AZULE</a>, so thanks to him and his amazing script.</span>
     <span style="color: #ff2b2b;"><b>If bugs are happening, please open an issue on github or contact me through steam, and explain me how to achieve the bug in details so I can take a look at it.</b></span>

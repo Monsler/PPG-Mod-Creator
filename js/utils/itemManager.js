@@ -4,6 +4,7 @@ class ItemManager { // Allows us to store and create items in the cache.
         this.elementsList = elementsList 
     }
 
+    /* Loads all the items stored in the local storage and displays them in the accurate div */
     load(){
         this.elementsList.innerHTML = "";
 
@@ -37,6 +38,8 @@ class ItemManager { // Allows us to store and create items in the cache.
         window.localStorage.setItem("items", JSON.stringify(this.items));
     }
 
+
+    /* Deletes a certain item from the storage */
     delete(index){
         this.items.splice(index, 1);
 
@@ -44,6 +47,8 @@ class ItemManager { // Allows us to store and create items in the cache.
         return this.load();
     }
 
+
+    /* Saves a new item and its category in the storage */
     save({ item, category }){
         this.items.push({
             category: category,
@@ -54,6 +59,8 @@ class ItemManager { // Allows us to store and create items in the cache.
         return this.load();
     }
 
+
+    /* Clear all of the items */
     clear(){
         this.items = [];
         return this.load();

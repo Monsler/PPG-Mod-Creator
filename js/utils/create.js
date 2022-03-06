@@ -51,6 +51,7 @@ function checkInputs(divID){ // Checks if all the inputs are filled
     return true;
 }
 
+
 /* Element Selection */
 const availableElements = ["Click to select a type", "Firearm", "Explosive", "Entity", "Object", "Melee"];
 for (const option of availableElements){

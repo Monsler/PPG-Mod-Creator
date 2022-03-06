@@ -1,7 +1,7 @@
 /* Module Importation */
 import "./utils/settings.js";
 import { items, checkInputs } from "./utils/create.js";
-import { Compiler } from "./utils/compile.js";
+import { Creator } from "./utils/creator.js";
 
 
 /* Handle number input */
@@ -32,8 +32,8 @@ document.querySelector("#mod_download").addEventListener("click", async () => {
     if(!checkInputs("#settings .left")) return document.querySelector("#settings_warning").innerHTML = "Please fill all the inputs."; 
     if(items.length == 0) return document.querySelector("#settings_warning").innerHTML = "Please add some mod elements."; 
 
-    // Creates the compiler
-    const compiler = new Compiler(items, {
+    // Creates the creator
+    const creator = new Creator(items, {
         name: document.querySelector("#mod_name").value.replace((/  |\r\n|\n|\r/gm),"") ? document.querySelector("#mod_name").value : "Generated Mod",
         author: document.querySelector("#mod_author").value.replace((/  |\r\n|\n|\r/gm),"") ? document.querySelector("#mod_author").value : "PPG Mod Creator",
         description: document.querySelector("#mod_description").value.replace((/  |\r\n|\n|\r/gm),"") ? document.querySelector("#mod_description").value : "Made with PPG Mod Creator"
@@ -41,7 +41,7 @@ document.querySelector("#mod_download").addEventListener("click", async () => {
 
     document.querySelector("#mod_download").innerText = "Generating your mod! Wait a few minute.";
     try {
-        await compiler.start(document.querySelector("#createCategory").checked); // Check if checked to see if we wanne create a new category in the PPG sidebar
+        await creator.start(document.querySelector("#createCategory").checked); // Check if checked to see if we wanne create a new category in the PPG sidebar
     } catch(e) {
         console.log(e);
         document.querySelector("#settings_warning").innerHTML = "Ah... Something bad happened, try again!";

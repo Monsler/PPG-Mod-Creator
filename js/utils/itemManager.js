@@ -22,7 +22,7 @@ class ItemManager { // Allows us to store and create items in the cache.
             <header><i class="zmdi zmdi-close deleteElement" data-close="${i}"></i></header>
             <div>
                 <div class="left">
-                    <img src="${item.data.thumbnail}">
+                    <img decoding="async" loading="lazy" src="${item.data.thumbnail}">
                 </div>
                 <div class="right">
                     <span>${item.data.name}</span>

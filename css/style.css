@@ -5,7 +5,8 @@
 ::-webkit-scrollbar-track {background-color: rgba(227, 227, 227, 0.2);}
 ::-webkit-scrollbar-thumb {background: rgba(241, 241, 241, 0.2);}
 
-* {outline: none}
+* {outline: none;}
+img {content-visibility: auto;}
 body {
     margin: 0;
     height: 100vh;

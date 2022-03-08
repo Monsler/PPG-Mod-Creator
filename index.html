@@ -234,6 +234,13 @@
                             <input type="file" id="object_spawn_file" accept=".wav, .mp3">
                             <button id="object_spawn">Select .wav/.mp3 file</button>
                         </li>
+                        <li>
+                            <span>Is the object weightless?</span>
+                            <select class="weightless">
+                                <option value="false">False</option>
+                                <option value="true">True</option>
+                            </select>
+                        </li>
                     </ul>
                     <span class="warning"></span>
                     <button data-item="object" class="save">Save Object</button>
@@ -302,38 +309,35 @@
 
             <section id="help">
                 <h1>How to use "People Playground Mod Creator"</h1>
-                <span>First of all, this mod creator is very basic, and is not intended for the creation of mods for the steam workshop.</span>
-                <span>Also, if you want to learn how to make mods from scratch, there are some useful guides on steam community and use the <a href="https://www.studiominus.nl/ppg-modding/index.html">official documentation</a>.</span>
-                <div class="hr"></div>
-                <h1>How to create your first mod element</h1>
-                <span>
-                    To create your first mod element, press the "+" at the top of the navbar, it should show you a page with all your created elements. To create a new one click on the "Create Element" button.
-                    Once the button clicked, a page should appear, offering you to choose the type of element you want to create. To change the type of element to be created, simply click on "Click to select a type", and choose what suits you.
-                    You can create as many elements as you want, but be aware that the more elements you create, the longer it will take to generate the mod. Also, when importing files, avoid using files that are too large.
-                    If you want to avoid that your item is 100 times the size of your humans, use sprites with dimensions smaller than 100x100 pixels.
-                    Once you have created your item, click on the save button to save it in your item list.
-                    <b>Be aware that all the items you create are stored on the webpage. If your computer isn't that powerful, avoid creating a lot of mod elements, or your pc may suffer from lags.</b>
-                </span>
-                <div class="hr"></div>
-                <h1>How to download your created mod</h1>
-                <span>
-                    To download your new super cool mod, just click on the present gear of the sidebar. 
-                    Here you will be able to change your mod information (name, description, author and thumbnail). Be careful, for your thumbnail, use images of 200x200 pixels, or it will be crop. 
-                    To export your mod, you must have created at least one element. To download it, just click on the "Download your mod!" button. 
-                    If no download popup starts, allow popups on this page in your browser options. Once the .zip is downloaded, go to your local game files, and export the .zip to the mod folder. 
-                    (Be careful not to export it to the root of the mod folder). 
-                    Well done, now you can use your mod.
-                </span>
+                <ul>
+                    <li>People Playground Mod Creator is pretty simple to use. First of all, you can go create your first mod element by clicking on the + icon, in the sidebar. Then just select the type of element you wanna create and fill the required form. There you go, you just created your first mod element. <b>Be aware that all the items you create are stored on the webpage. If your computer isn't that powerful, avoid creating a lot of mod elements, or your pc may suffer from lags.</b></li>
+                    <li>To download the zip file containing your mod content, just click on the <i class="zmdi zmdi-settings"></i> icon, name your mod and download it. That's all. If you want to, you can even add your own mod thumbnail and create your own mod category.</li>
+                    <li>Once the .zip is downloaded, go to your local game files, and export the .zip to the mod folder. (Be careful not to export it to the root of the mod folder). Well done, now you can use your mod.</li>
+                </ul>
+
+                <h1>How can I report a bug?</h1>
+                <span>To report a bug, simply click on <a href="https://github.com/Cheeteau/PPG-Mod-Creator/issues/new?assignees=&labels=bug&template=bug_report.md&title=">this link</a> to create an issue on the github repository.</span>
+
+                <h1>How can I support?</h1>
+                <span>To support me and my work, you can:</span>
+                <ul>
+                    <li>Give me some suggestions to improve PPG Mod Creator by clicking on <a href="https://docs.google.com/forms/d/e/1FAIpQLScbHfIQZGH6lYh36BHUNsR70Eo5v74Qu9GzSbI-WFvuDAbsFA/viewform">this link</a>!</li>
+                    <li>Buy me a coffee to show me you actually like my work and help me buying some random stuff by clicking on <a href="https://ko-fi.com/cheeteau">this link</a>!</li>
+                    <li>Contributing on the github repo by pushing updates and cleaning my code on <a href="https://github.com/Cheeteau/PPG-Mod-Creator">this link</a>!</li>
+                </ul>
             </section>
 
             <section id="helpers">
                 <div class="all">
-                    <h1>Thanks for everyone suggesting ideas!</h1>
-                    <span>If you wanna help me, give me some of your ideas in <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLScbHfIQZGH6lYh36BHUNsR70Eo5v74Qu9GzSbI-WFvuDAbsFA/viewform">this form below</a>.</span>
+                    <h1>Thanks for everyone for helping!</h1>
+                    <span>If you wanna help me, give me some of your ideas in <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLScbHfIQZGH6lYh36BHUNsR70Eo5v74Qu9GzSbI-WFvuDAbsFA/viewform">this form below</a>, <a href="https://ko-fi.com/cheeteau">buy me a coffee</a>, or even come and contribute to the code!</span><br>
+                    <span>Depending on how you support me, the color of your username will change. By giving a <b class="suggestion">suggestion</b>, your username will be green. If you're a <b class="tipper">tipper</b>, your name will be gold and finally if you <b class="contributer">contribute</b> on the repo, your name will be purple. In anyway, thank you already for using the website!</span>
+
                     <ul>
-                        <li><b>wyatt3m7</b> | Bug catcher, suggested modifying entities health.</li>
-                        <li><b>epicGamingA</b> | Added blasters.</li>
-                        <li><b>MellonMunch</b> | Added shotgun, couldn't add the nukes but I might take a look about them. Instead I added a General Purpose Bomb.</li>
+                        <li><b class="suggestion">wyatt3m7</b> | Bug catcher, suggested modifying entities health.</li>
+                        <li><b class="suggestion">epicGamingA</b> | Added blasters.</li>
+                        <li><b class="suggestion">MellonMunch</b> | Added shotgun, couldn't add the nukes but I might take a look about them. Instead I added a General Purpose Bomb.</li>
+                        <li><b class="suggestion">Muurkz</b> | High quality textures for humans (Scaling according to the width of the entity's skin image).</li>
                     </ul>
                 </div>
             </section>

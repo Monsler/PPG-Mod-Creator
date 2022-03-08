@@ -20,7 +20,7 @@ class Creator {
     create = { // Contains the code snippets to create the mod. Is it not very optimized but it works at the moment without making the browser crash on most pc.
         Misc: (item) => {
             let audioScriptIfAudio = "";
-            if (item.data.audio != null){ // If there's an audio sound
+            if (item.data.audio != null) { // If there's an audio sound
                 audioScriptIfAudio = `
                 AudioSource spawnSound = Instance.AddComponent<AudioSource>();
                 spawnSound.minDistance = 1;
@@ -52,9 +52,12 @@ class Creator {
                         Instance.GetComponent<PhysicalBehaviour>().InitialMass = ${item.data.weight};
                         Instance.GetComponent<PhysicalBehaviour>().TrueInitialMass = ${item.data.weight};
                         Instance.GetComponent<PhysicalBehaviour>().Properties = ModAPI.FindPhysicalProperties("${item.data.material}");
+                        Instance.GetComponent<PhysicalBehaviour>().IsWeightless = ${item.data.weightless};
 
                         Instance.GetComponent<SpriteRenderer>().sprite = ModAPI.LoadSprite("Sprites/${(item.data.name).replace(/ /g, "-")}.png");
                         Instance.FixColliders();
+
+
 
                         ${audioScriptIfAudio}
                     }
@@ -82,34 +85,35 @@ class Creator {
         },
 
         Entities: (item) => {
+            // Loads the skin image to determine the scale
             this.modApiRegistered += `
-            ModAPI.Register(
-                new Modification()
-                {
-                    OriginalItem = ModAPI.FindSpawnable("${item.data.type}"),
-                    NameOverride = "${item.data.name}",
-                    DescriptionOverride = "${item.data.description}",
-                    CategoryOverride = ModAPI.FindCategory("Entities"),
-                    ThumbnailOverride = ModAPI.LoadSprite("Thumbnails/${(item.data.name).replace(/ /g, "-")}-thumb.png"),
-                    AfterSpawn = (Instance) =>
+                ModAPI.Register(
+                    new Modification()
                     {
-
-                        var skin = ModAPI.LoadTexture("Sprites/${(item.data.name).replace(/ /g, "-")}-skin.png");
-                        var flesh = ModAPI.LoadTexture("Sprites/${(item.data.name).replace(/ /g, "-")}-flesh.png");
-                        var bone = ModAPI.LoadTexture("Sprites/${(item.data.name).replace(/ /g, "-")}-bone.png");
-    
-                        var person = Instance.GetComponent<PersonBehaviour>();
-                        person.SetBodyTextures(skin, flesh, bone, 1);
-
-                        foreach (var limb in person.Limbs)
+                        OriginalItem = ModAPI.FindSpawnable("${item.data.type}"),
+                        NameOverride = "${item.data.name}",
+                        DescriptionOverride = "${item.data.description}",
+                        CategoryOverride = ModAPI.FindCategory("Entities"),
+                        ThumbnailOverride = ModAPI.LoadSprite("Thumbnails/${(item.data.name).replace(/ /g, "-")}-thumb.png"),
+                        AfterSpawn = (Instance) =>
                         {
-                            limb.Health = ${item.data.health}f;
-                            limb.InitialHealth = ${item.data.health}f;
-                            limb.RegenerationSpeed += ${item.data.regenSpeed}f;
+    
+                            var skin = ModAPI.LoadTexture("Sprites/${(item.data.name).replace(/ /g, "-")}-skin.png");
+                            var flesh = ModAPI.LoadTexture("Sprites/${(item.data.name).replace(/ /g, "-")}-flesh.png");
+                            var bone = ModAPI.LoadTexture("Sprites/${(item.data.name).replace(/ /g, "-")}-bone.png");
+        
+                            var person = Instance.GetComponent<PersonBehaviour>();
+                            person.SetBodyTextures(skin, flesh, bone, ${Math.floor(item.data.skinWidth / 18)});
+    
+                            foreach (var limb in person.Limbs)
+                            {
+                                limb.Health = ${item.data.health}f;
+                                limb.InitialHealth = ${item.data.health}f;
+                                limb.RegenerationSpeed += ${item.data.regenSpeed}f;
+                            }
                         }
                     }
-                }
-            );`;
+                );`;
         },
 
         Explosives: (item) => {
@@ -186,14 +190,14 @@ class Creator {
 
                 // Generates the image files in the zip
                 for (const item of this.items) {
-                    if(item.category == "Entities"){
+                    if (item.category == "Entities") {
                         thumbnails.file(`${(item.data.name).replace(/ /g, "-")}-thumb.png`, item.data.thumbnail.replace(/^data:image\/(png|jpg);base64,/, ""), { base64: true });
                         sprites.file(`${(item.data.name).replace(/ /g, "-")}-skin.png`, item.data.skin.replace(/^data:image\/(png|jpg);base64,/, ""), { base64: true });
                         sprites.file(`${(item.data.name).replace(/ /g, "-")}-flesh.png`, item.data.flesh.replace(/^data:image\/(png|jpg);base64,/, ""), { base64: true });
                         sprites.file(`${(item.data.name).replace(/ /g, "-")}-bone.png`, item.data.bone.replace(/^data:image\/(png|jpg);base64,/, ""), { base64: true });
 
                         if (item.data.audio != null) sounds.file(`${(item.data.name).replace(/ /g, "-")}.mp3`, item.data.audio.replace(/^data:audio\/(wav|mpeg);base64,/, ""), { base64: true });
-                    }else{
+                    } else {
                         thumbnails.file(`${(item.data.name).replace(/ /g, "-")}-thumb.png`, item.data.thumbnail.replace(/^data:image\/(png|jpg);base64,/, ""), { base64: true });
                         sprites.file(`${(item.data.name).replace(/ /g, "-")}.png`, item.data.sprite.replace(/^data:image\/(png|jpg);base64,/, ""), { base64: true });
                         if (item.data.audio != null) sounds.file(`${(item.data.name).replace(/ /g, "-")}.mp3`, item.data.audio.replace(/^data:audio\/(wav|mpeg);base64,/, ""), { base64: true });
@@ -233,12 +237,12 @@ class Creator {
 
                     /* Made in USSR
                     AZULE */
-                }`.replace((/  |\r\n|\n|\r/gm),""));
-    
+                }`.replace((/  |\r\n|\n|\r/gm), ""));
+
                 // Generates script.cs
                 let _customCategory = "";
-                let items = this.modApiRegistered.replace((/  |\r\n|\n|\r/gm),"")
-                if (customCategory){
+                let items = this.modApiRegistered.replace((/  |\r\n|\n|\r/gm), "")
+                if (customCategory) {
                     _customCategory = `CategoryBuilder.Create("${this.modjson.Name}", "${this.modjson.Description}", ModAPI.LoadSprite("thumb.png"));`;
                     items = items.replaceAll(/ModAPI.FindCategory\((["'])(?:(?=(\\?))\2.)*?\1\)/g, `ModAPI.FindCategory("${this.modjson.Name}")`);
                 }
@@ -258,8 +262,8 @@ class Creator {
                             ${items}
                         }
                     }
-                }`.replace((/  |\r\n|\n|\r/gm),""));
-    
+                }`.replace((/  |\r\n|\n|\r/gm), ""));
+
                 // Generates mod.json
                 zip.file("mod.json", JSON.stringify(this.modjson));
 
@@ -267,7 +271,7 @@ class Creator {
                 const content = await zip.generateAsync({ type: "blob" });
                 saveAs(content, `${this.modjson.Name}.zip`);
                 return res();
-            } catch(e) {
+            } catch (e) {
                 return rej(e); // Reject if an error occured
             }
         });

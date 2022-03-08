@@ -2,30 +2,19 @@
 [PPG Mod Creator](https://cheeteau.github.io/PPG-Mod-Creator/) is a small mod creator that I created in my free time.
 The purpose of this site is not to create mods that compete with the workshop mods, it's more for people who don't want to learn how to code for creating mods. So don't expect to be able to create incredible things.
 
-# The Website
-If you want to create your own little mod, [here's the link.](https://cheeteau.github.io/PPG-Mod-Creator/)
+# Helping me
+You can submit all the ideas you have [on this form](https://docs.google.com/forms/d/e/1FAIpQLScbHfIQZGH6lYh36BHUNsR70Eo5v74Qu9GzSbI-WFvuDAbsFA/viewform).
+If you wanna tip me some money, just [click on this link](https://ko-fi.com/cheeteau).
+And if you're crazy, you can contribute on the repo to help me clean the code, and have your name displayed on the helpers page on the website.
 
-Also, here's some screenshots of the website.
-
-![screen 1](https://steamuserimages-a.akamaihd.net/ugc/1764820095376878256/EAB9AC404FB9A6ACDD46925896BB56181393BE6A/)
-![screen 2](https://steamuserimages-a.akamaihd.net/ugc/1764820095376880067/CE3BBDAA3CBEC451E91BB338F887BA8525D27A62/)
-![screen 3](https://steamuserimages-a.akamaihd.net/ugc/1764820095376879512/E4024348F5EAD9EFD08A111947270217901123F9/)
-![screen 4](https://steamuserimages-a.akamaihd.net/ugc/1764820095376878669/51F0D4908D3015D7496165801E6353351B282FF0/)
-
-# To Do List
-Here's a small "To-do List" of the upcoming features
-
-- [ ] Allow people to use thumbnails with dimensions greater than 200x200 pixels.
-- [ ] Better responsive (There's no responsive atm)
-- [ ] Javascript optimizations
-- [ ] Allow users to create more items (Current ones are: Firearms, Explosive, Entity, Melee and Object)
-- [x] The website works
-
-# Contributing
-If you want to contribute, feel free to modify the code to pull request it.
-**But WARNING**, this code is not the best one, and can obviously be optimized. I don't do it myself by a lack of time but also because I'm pretty lazy.
-
-# Some Footer
-I sincerely hope that my website will help some of you to create your own simple mod.
-It's only a small project so don't expect regular updates, I repeat but it's open source, so if you have features to add or even simple bug patches, you're welcome.
-Also, if you want to create your own mod by programming, there are some guides on the steam community that will teach you how to do so.
+# Changelogs (From the websites creation to now)
+- [03/08/2022] High quality human textures are now supported. Also added the possibility to make an object weightless. Also modified the README.md
+- [03/05/2022] Added more explosive and weapon types.
+- [03/03/2022] Added more weapon types.
+- [02/28/2022] Fixed the save button, now you can save the elements you created correctly.
+- [02/27/2022] Fixed some requirements, so you're not forced to put an audio when creating an object.
+- [02/22/2022] You can now change entities' health and regeneration speed.
+- [02/21/2022] Added a lot of content such as objects weight, material, spawn sound. Added the ability to create a category for your mod as well.
+- [03/09/2021] Fixed the "compiler".
+- [03/08/2021] Now saves all the content created in the localstorage.
+- [03/03/2021] First version of the website.

@@ -25,6 +25,14 @@ class FileInputHandler { // Will handle the custom file input I made
             if(changeText) return this.button.innerText = filename;
         });
     }
+    getImageWidth(base64file){
+        return new Promise(res => {
+            const img = new Image();
+
+            img.onload = () => res(img.width);
+            img.src = base64file;
+        });
+    }
     getBase64File(){
         return new Promise(res => {
             const reader = new FileReader();

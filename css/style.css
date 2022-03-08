@@ -168,7 +168,7 @@ h1 {font-size: 3vh;}
     margin: .5pc;
     width: 200px;
 }
-#create #createdElements img {width: 80px;}
+#create #createdElements img {width: 80px; height: 80px;}
 #create #createdElements .right {display: flex;flex-direction: column;margin-left: 1pc;align-items: flex-start;}
 #create #createdElements .container > div {display: flex;padding: .5pc;}
 #create #createdElements .container header {
@@ -215,6 +215,13 @@ h1 {font-size: 3vh;}
         width: 100%;
     }
 }
+
+
+/* Colors */
+.suggestion {color: #88e44c;}
+.tipper {color: gold;}
+.contributer {color: #8c4dc7;}
+
 
 /* Modal */
 .modalAlert {

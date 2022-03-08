@@ -108,6 +108,7 @@ for (const button of itemSaveButtons){
                 skin: await filesInput.skin_file.getBase64File(),
                 flesh: await filesInput.flesh_file.getBase64File(),
                 bone: await filesInput.bone_file.getBase64File(),
+                skinWidth: await filesInput.skin_file.getImageWidth(await filesInput.skin_file.getBase64File()),
                 thumbnail: await filesInput.thumbnail_file.getBase64File()
             }
         }

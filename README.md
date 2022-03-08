@@ -8,13 +8,13 @@ If you wanna tip me some money, just [click on this link](https://ko-fi.com/chee
 And if you're crazy, you can contribute on the repo to help me clean the code, and have your name displayed on the helpers page on the website.
 
 # Changelogs (From the websites creation to now)
-- [03/08/2022] High quality human textures are now supported. Also added the possibility to make an object weightless. Also modified the README.md
-- [03/05/2022] Added more explosive and weapon types.
-- [03/03/2022] Added more weapon types.
-- [02/28/2022] Fixed the save button, now you can save the elements you created correctly.
-- [02/27/2022] Fixed some requirements, so you're not forced to put an audio when creating an object.
-- [02/22/2022] You can now change entities' health and regeneration speed.
-- [02/21/2022] Added a lot of content such as objects weight, material, spawn sound. Added the ability to create a category for your mod as well.
-- [03/09/2021] Fixed the "compiler".
-- [03/08/2021] Now saves all the content created in the localstorage.
-- [03/03/2021] First version of the website.
+- **[03/08/2022]** High quality human textures are now supported. Also added the possibility to make an object weightless. Also modified the README.md
+- **[03/05/2022]** Added more explosive and weapon types.
+- **[03/03/2022]** Added more weapon types.
+- **[02/28/2022]** Fixed the save button, now you can save the elements you created correctly.
+- **[02/27/2022]** Fixed some requirements, so you're not forced to put an audio when creating an object.
+- **[02/22/2022]** You can now change entities' health and regeneration speed.
+- **[02/21/2022]** Added a lot of content such as objects weight, material, spawn sound. Added the ability to create a category for your mod as well.
+- **[03/09/2021]** Fixed the "compiler".
+- **[03/08/2021]** Now saves all the content created in the localstorage.
+- **[03/03/2021]** First version of the website.

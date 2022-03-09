@@ -1,4 +1,3 @@
-/* Module Importation */
 import "./utils/settings.js";
 import { items, checkInputs } from "./utils/create.js";
 import { Creator } from "./utils/creator.js";
@@ -27,6 +26,7 @@ for (const button of buttons){
     });
 }
 
+
 /* Download Mod */
 document.querySelector("#mod_download").addEventListener("click", async () => {
     if(!checkInputs("#settings .left")) return document.querySelector("#settings_warning").innerHTML = "Please fill all the inputs."; 
@@ -39,10 +39,14 @@ document.querySelector("#mod_download").addEventListener("click", async () => {
         description: document.querySelector("#mod_description").value.replace((/  |\r\n|\n|\r/gm),"") ? document.querySelector("#mod_description").value : "Made with PPG Mod Creator"
     });
 
+    // Changes the buttons text
     document.querySelector("#mod_download").innerText = "Generating your mod! Wait a few minute.";
+
+    // Could create the mod
     try {
         await creator.start(document.querySelector("#createCategory").checked); // Check if checked to see if we wanne create a new category in the PPG sidebar
     } catch(e) {
+        // Bruh.
         console.log(e);
         document.querySelector("#settings_warning").innerHTML = "Ah... Something bad happened, try again!";
     }

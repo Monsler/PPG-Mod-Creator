@@ -1,7 +1,14 @@
 import { getBase64Image } from "./functions.js";
 
-/* Creator Class */
+/**
+ * This class will generate the mods zip file and the code snippets for each mod elements.
+ * I could optimize it but I don't have much time for that rn.
+ */
 class Creator {
+    /**
+     * @param {Object} items All the mod elements created by the user.
+     * @param {String} infos The mod informations (Mod name, author, description) 
+     */
     constructor(items, { name, author, description }) {
         this.items = items;
         this.modApiRegistered = "";
@@ -17,10 +24,22 @@ class Creator {
         }
     }
 
-    create = { // Contains the code snippets to create the mod. Is it not very optimized but it works at the moment without making the browser crash on most pc.
+
+    /**
+     * The object "create" contains the functions allowing us to use the different snippets to make a mod.
+     * In each function, we just add the snippet into a string variable "this.modApiRegistered".
+     * Contains:
+     * - Misc (Objects)
+     * - Melee
+     * - Entities
+     * - Explosives
+     * - Firearms
+     */
+    create = {
         Misc: (item) => {
+            // If the item contains an audio file, we will add this code in the snippet.
             let audioScriptIfAudio = "";
-            if (item.data.audio != null) { // If there's an audio sound
+            if (item.data.audio != null) {
                 audioScriptIfAudio = `
                 AudioSource spawnSound = Instance.AddComponent<AudioSource>();
                 spawnSound.minDistance = 1;
@@ -37,6 +56,7 @@ class Creator {
                 `;
             }
 
+            // Adds the snippet
             this.modApiRegistered += `
             ModAPI.Register(
                 new Modification()
@@ -57,15 +77,15 @@ class Creator {
                         Instance.GetComponent<SpriteRenderer>().sprite = ModAPI.LoadSprite("Sprites/${(item.data.name).replace(/ /g, "-")}.png");
                         Instance.FixColliders();
 
-
-
                         ${audioScriptIfAudio}
                     }
                 }
             );`;
         },
 
+
         Melee: (item) => {
+            // Adds the snippet
             this.modApiRegistered += `
             ModAPI.Register(
                 new Modification()
@@ -84,7 +104,9 @@ class Creator {
             );`;
         },
 
+
         Entities: (item) => {
+            // Adds the snippet
             this.modApiRegistered += `
                 ModAPI.Register(
                     new Modification()
@@ -115,7 +137,9 @@ class Creator {
                 );`;
         },
 
+
         Explosives: (item) => {
+            // Adds the snippet
             this.modApiRegistered += `
             ModAPI.Register(
                 new Modification()
@@ -137,7 +161,9 @@ class Creator {
             );`;
         },
 
+
         Firearms: (item) => {
+            // Adds the snippet
             this.modApiRegistered += `
             ModAPI.Register(
                 new Modification()
@@ -173,29 +199,41 @@ class Creator {
         }
     }
 
+
+    /**
+     * Will start the process of creating the mod zip file.
+     * @param {String} customCategory The custom category of the mod if one is created. (Will be transmitted to the "createZipFile" function.)
+     * @returns A zip file.
+     */
     start(customCategory) {
         for (const item of this.items) { this.create[item.category.replace(".", "")](item); }
         return this.createZipFile(customCategory);
     }
 
+
+    /**
+     * This function will put everything in a single zip file that the user will be able to download.
+     * @param {String} customCategory The custom category of the mod if one is created.
+     * @returns Promise (Res = The zip file has been created, success. Rej = The zip file has failed.)
+     */
     createZipFile(customCategory) {
         return new Promise(async (res, rej) => {
             try {
+
                 // Create the zip archive and folders inside
                 const zip = new JSZip();
                 const sounds = zip.folder("Sounds");
                 const thumbnails = zip.folder("Thumbnails");
                 const sprites = zip.folder("Sprites");
 
-                // Generates the image files in the zip
+
+                // Generates the image files and puts them in the zip
                 for (const item of this.items) {
                     if (item.category == "Entities") {
                         thumbnails.file(`${(item.data.name).replace(/ /g, "-")}-thumb.png`, item.data.thumbnail.replace(/^data:image\/(png|jpg);base64,/, ""), { base64: true });
                         sprites.file(`${(item.data.name).replace(/ /g, "-")}-skin.png`, item.data.skin.replace(/^data:image\/(png|jpg);base64,/, ""), { base64: true });
                         sprites.file(`${(item.data.name).replace(/ /g, "-")}-flesh.png`, item.data.flesh.replace(/^data:image\/(png|jpg);base64,/, ""), { base64: true });
                         sprites.file(`${(item.data.name).replace(/ /g, "-")}-bone.png`, item.data.bone.replace(/^data:image\/(png|jpg);base64,/, ""), { base64: true });
-
-                        if (item.data.audio != null) sounds.file(`${(item.data.name).replace(/ /g, "-")}.mp3`, item.data.audio.replace(/^data:audio\/(wav|mpeg);base64,/, ""), { base64: true });
                     } else {
                         thumbnails.file(`${(item.data.name).replace(/ /g, "-")}-thumb.png`, item.data.thumbnail.replace(/^data:image\/(png|jpg);base64,/, ""), { base64: true });
                         sprites.file(`${(item.data.name).replace(/ /g, "-")}.png`, item.data.sprite.replace(/^data:image\/(png|jpg);base64,/, ""), { base64: true });
@@ -204,7 +242,8 @@ class Creator {
                 }
                 zip.file("thumb.png", getBase64Image(document.querySelector("#preview_mod_thumb")), { base64: true });
 
-                // Adds the CustomCategory.cs to create custom categories heh
+
+                // Adds the CustomCategory.cs to create custom categories (SCRIPT FROM AZULE)
                 zip.file("CategoryBuilder.cs", `
                 using System;
                 using System.Linq;
@@ -238,7 +277,8 @@ class Creator {
                     AZULE */
                 }`.replace((/  |\r\n|\n|\r/gm), ""));
 
-                // Generates script.cs
+
+                // Generates the main script (script.cs) for the mod
                 let _customCategory = "";
                 let items = this.modApiRegistered.replace((/  |\r\n|\n|\r/gm), "")
                 if (customCategory) {
@@ -269,6 +309,8 @@ class Creator {
                 // Downloads json
                 const content = await zip.generateAsync({ type: "blob" });
                 saveAs(content, `${this.modjson.Name}.zip`);
+
+                // Success
                 return res();
             } catch (e) {
                 return rej(e); // Reject if an error occured

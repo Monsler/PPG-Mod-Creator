@@ -1,4 +1,8 @@
-// Allows us to get the base64 uri from an image element. Useful uh?
+/**
+ * Allows us to get the base64 data from an image.
+ * @param {ImageData} img The image we wanna convert
+ * @returns Base64
+ */
 function getBase64Image(img) {
     const canvas = document.createElement("canvas");
           canvas.width = img.width;
@@ -12,7 +16,12 @@ function getBase64Image(img) {
 }
 
 
-/* Resizes an image */
+/**
+ * Allows us to resize an image.
+ * @param {Number} sizePX The size we want (Square ratio)
+ * @param {ImageData} image The image we wanna resize
+ * @returns Base64
+ */
 function resizeImage(sizePX, image){
     const canvas = document.createElement("canvas");
     const ctx = canvas.getContext("2d");
@@ -24,17 +33,7 @@ function resizeImage(sizePX, image){
     return canvas.toDataURL("image/png");
 }
 
-
-/* Converts hex to rgb */
-function hex2rgb(hex) {
-    const r = parseInt(hex.substr(1,2), 16)
-    const g = parseInt(hex.substr(3,2), 16)
-    const b = parseInt(hex.substr(5,2), 16)
-    return [r, g, b];
-}
-
 export {
     getBase64Image,
-    resizeImage,
-    hex2rgb
+    resizeImage
 }

@@ -3,12 +3,16 @@ import { ItemManager } from "./itemManager.js";
 const elementsList = document.querySelector("#createdElements");
 
 
-/* Savins Section */
-const _ItemManager = new ItemManager(elementsList); // Defines a new item manager
+/**
+ * Defines a new item manager in order to save all the created mod elements in the local storage.
+ */
+const _ItemManager = new ItemManager(elementsList);
 
 
-/* Files */
-const files = { // All the files inputs required.
+/**
+ * This object contains all the file inputs in order to select them rapidly without having to have a big switch for each ones.
+ */
+const files = {
     firearm: {
         thumbnail_file: new FileInputHandler("#firearm_thumbnail", "#firearm_thumbnail_file", true),
         sprite_file: new FileInputHandler("#firearm_sprite", "#firearm_sprite_file", true),
@@ -39,10 +43,22 @@ const files = { // All the files inputs required.
     }
 }
 
-function resetFiles(object){  // Resets the file inputs
+
+/**
+ * This function resets all the file inputs.
+ * @param {Object} object The json object containing all the inputs (const files)
+ */
+function resetFiles(object){
     for (const file of Object.keys(object)){ object[file].reset(); }
 }
-function checkInputs(divID){ // Checks if all the inputs are filled
+
+
+/**
+ * This function checks if all the required inputs are filled.
+ * @param {String} divID The div's ID we want to check
+ * @returns {Boolean/String} True if everything is filled, a string containing an error if not. (I know I could do simpler but I don't know)
+ */
+function checkInputs(divID){
     const inputs = document.querySelectorAll(`${divID} input.required`);
     for (const input of inputs){ 
         if(input.value.replace(/ /g, "") == "") return "Please fill all of the inputs."; 
@@ -52,16 +68,22 @@ function checkInputs(divID){ // Checks if all the inputs are filled
 }
 
 
-/* Element Selection */
+/**
+ * This code will add all the available "elements" (Mod content as Firearm, Entity, etc...) in a <select> DOM element.
+ * No need to create all of these by hand.
+ */
 const availableElements = ["Click to select a type", "Firearm", "Explosive", "Entity", "Object", "Melee"];
 for (const option of availableElements){
     const selectOption = document.createElement("option");
     selectOption.value = option; selectOption.innerText = option;
     document.querySelector("#createElement select:first-of-type").appendChild(selectOption);
-} // Will append all the available elements in the <select> dom element
+}
 
 
-/* Will handle the creator changes */
+/**
+ * This code will handle the change of elements. 
+ * Example: If the user switchs from Firearm to Explosive, the page content will change.
+ */
 document.querySelector("#createElement select:first-of-type").addEventListener("change", () => {
     const newValue = document.querySelector("#createElement select:first-of-type").value;
     const elementPage = document.querySelector(`#${newValue.toLowerCase()}`);
@@ -71,10 +93,13 @@ document.querySelector("#createElement select:first-of-type").addEventListener("
     if(!elementPage) return null;
 
     elementPage.classList.add("active");
-}); // Changes the "page" when selecting an element
+});
 
 
-/* Item Saving */
+/**
+ * This code will handle the save of a mod element.
+ * Example: If the user has created an entity, when he will click the save button, this code will be executed.
+ */
 const itemSaveButtons = document.querySelectorAll("#createElement button.save");
 const categories = {
     firearm: "Firearms",
@@ -82,18 +107,19 @@ const categories = {
     entity: "Entities",
     object: "Misc.",
     melee: "Melee"
-} // Will help to find the correct type from the div id.
+} // Will help to find the correct type of element from the div id.
 
 for (const button of itemSaveButtons){
-    button.addEventListener("click", async () => { // Saves the current item
+    // An item is getting saved:
+    button.addEventListener("click", async () => {
         const itemToSave = button.dataset.item;
         const filesInput = files[itemToSave];
         let newItem;
 
-        // Checks about the inputs
+        // Checks all the inputs to see if they are actually filled:
         if(typeof checkInputs(`#${itemToSave}`) != "boolean") return document.querySelector(`#${itemToSave} .warning`).innerHTML = checkInputs(`#${itemToSave}`);
         
-        // I need to do this if-else statement because the files are not the same for the entity
+        // Forced to do a if/else statement, the content saved in the mod element aren't the same depending on if it's an entity or not.
         if(button.dataset.item != "entity"){
             newItem = {
                 type: document.querySelector(`#${itemToSave} .type`).value,
@@ -126,13 +152,13 @@ for (const button of itemSaveButtons){
         const avoidSameNames = _ItemManager.items.filter(item => item.data.name == newItem.name);
         if(avoidSameNames.length > 0) return alert(`The name "${newItem.name}" is already used by another of your mod elements. Please use a different name.`);
 
-        // Saves the item in the local storage
+        // Saves the item with the Item Manager
         _ItemManager.save({
             category: categories[itemToSave],
             item: newItem
         });
 
-        // Resets input files
+        // Resets file inputs
         resetFiles(files[itemToSave])
         return document.querySelector("i[data-page='create']").click();
     });
@@ -141,4 +167,5 @@ for (const button of itemSaveButtons){
 
 _ItemManager.load(); // Loads the item manager
 const items = _ItemManager.items; // And exports it items
+
 export { items, checkInputs };

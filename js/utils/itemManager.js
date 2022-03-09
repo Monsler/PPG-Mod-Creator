@@ -1,18 +1,30 @@
-class ItemManager { // Allows us to store and create items in the cache.
+/**
+ * This class allows us to store every single items (mod elements) in the local storage.
+ */
+class ItemManager {
+    /**
+     * @param {HTMLElement} elementsList Div that contains all the mod elements.
+     */
     constructor(elementsList){ 
         this.items = localStorage.getItem("items") != undefined ? JSON.parse(localStorage.getItem("items")) : [];
         this.elementsList = elementsList 
     }
 
-    /* Loads all the items stored in the local storage and displays them in the accurate div */
+    /**
+     * This function will load all the items from the local storage and will display them in "elementsList".
+     * @returns Void
+     */
     load(){
-        this.elementsList.innerHTML = "";
+        this.elementsList.innerHTML = ""; // Empty
 
+        // I forgot why I did that
         const inputs = document.querySelectorAll("#createElement input[type='text']");
         for (const input of inputs){input.value = "";}
 
+        // No elements
         if(this.items.length == 0) return this.elementsList.innerHTML = "No Elements Created"; 
 
+        // Displays each element
         let i = 0;
         for (const item of this.items){
             const container = document.createElement("div");
@@ -33,37 +45,47 @@ class ItemManager { // Allows us to store and create items in the cache.
             i++
         }
 
+        // Creates the delete button
         const deleteButtons = document.querySelectorAll(".deleteElement");
         for (const deleteBtn of deleteButtons){ deleteBtn.addEventListener("click", () => this.delete(deleteBtn.dataset.close)); }
         window.localStorage.setItem("items", JSON.stringify(this.items));
     }
 
 
-    /* Deletes a certain item from the storage */
+    /**
+     * Deletes a certain element from the local storage.
+     * @param {Number} index Index of the item we wanna remove.
+     * @returns Void
+     */
     delete(index){
-        this.items.splice(index, 1);
-
-        window.localStorage.setItem("items", JSON.stringify(this.items));
-        return this.load();
+        this.items.splice(index, 1); // Removes
+        window.localStorage.setItem("items", JSON.stringify(this.items)); // Saves the new array
+        this.load(); // Reloads the list
     }
 
 
-    /* Saves a new item and its category in the storage */
+    /**
+     * Will add a new item in the local storage.
+     * @param {Object} info Item's infos and category
+     */
     save({ item, category }){
         this.items.push({
             category: category,
             data: item
-        });
+        }); // Adds
 
-        window.localStorage.setItem("items", JSON.stringify(this.items));
-        return this.load();
+        window.localStorage.setItem("items", JSON.stringify(this.items)); // Saves the new array
+        this.load(); // Reloads the list
     }
 
 
-    /* Clear all of the items */
+    /**
+     * Cleat everything.
+     */
     clear(){
-        this.items = [];
-        return this.load();
+        this.items = []; // Clears
+        window.localStorage.setItem("items", JSON.stringify(this.items)); // Saves the new array
+        this.load(); // Reloads the list
     }
 }
 export { ItemManager }

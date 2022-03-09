@@ -4,7 +4,9 @@ import { resizeImage } from "./functions.js";
 
 /* File Event Handler */
 const fileHandler = new FileInputHandler("#mod_thumbnail", "#mod_thumb_file");
+
 fileHandler.on("change", async () => {
+    // Gets the image
     const dataSRC = await fileHandler.getBase64File();
     const image = new Image;
 

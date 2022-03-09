@@ -24,7 +24,17 @@ function resizeImage(sizePX, image){
     return canvas.toDataURL("image/png");
 }
 
+
+/* Converts hex to rgb */
+function hex2rgb(hex) {
+    const r = parseInt(hex.substr(1,2), 16)
+    const g = parseInt(hex.substr(3,2), 16)
+    const b = parseInt(hex.substr(5,2), 16)
+    return [r, g, b];
+}
+
 export {
     getBase64Image,
-    resizeImage
+    resizeImage,
+    hex2rgb
 }

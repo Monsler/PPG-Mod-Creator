@@ -53,6 +53,11 @@ input[type="number"] {
     background: rgba(0, 0, 0, 0.7);
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
+input[type="color"] {
+    padding: 0 !important;
+    background: transparent;
+    border: none;
+}
 
 select {
     -webkit-appearance: none;
@@ -193,7 +198,7 @@ h1 {font-size: 3vh;}
     border: 1px solid rgba(255, 255, 255, 0.1);
     background: rgba(0, 0, 0, 0.7);
     padding: 1pc 3pc;
-    max-height: 50vh;
+    max-height: 65vh;
     overflow: auto;
 }
 #createElement input {padding: .5pc 1pc;margin: 0;}

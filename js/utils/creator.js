@@ -85,7 +85,6 @@ class Creator {
         },
 
         Entities: (item) => {
-            // Loads the skin image to determine the scale
             this.modApiRegistered += `
                 ModAPI.Register(
                     new Modification()

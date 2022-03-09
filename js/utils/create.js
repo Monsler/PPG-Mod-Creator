@@ -118,7 +118,8 @@ for (const button of itemSaveButtons){
         const elementsNotFile = document.querySelectorAll(`#${itemToSave} *:not([type=file]):not(span):not(button):not(option)`);
         for (const element of elementsNotFile){
             const elementClass = element.classList[0];
-            newItem[elementClass] = element.value
+
+            newItem[elementClass] = element.value;
         }
 
         // Prevents the user from creating two items with the same name

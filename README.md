@@ -2,6 +2,15 @@
 [PPG Mod Creator](https://cheeteau.github.io/PPG-Mod-Creator/) is a small mod creator that I created in my free time.
 The purpose of this site is not to create mods that compete with the workshop mods, it's more for people who don't want to learn how to code for creating mods. So don't expect to be able to create incredible things.
 
+# To do list
+I see and read all of your suggestions dw. All of these are good! I promise, but some are too difficult to import or just to do, so please don't be mad or something if I don't add your idea. Still a big thank you for helping!
+- [ ] Armors
+- [ ] Multiple gun sounds
+- [ ] Reimport projects so you can modify them
+- [ ] TV that plays videos (+ for example, play a different video if you watch at 3AM or some shit like that.)
+- [ ] Change RPM of weapons (Rate of fire)
+
+
 # Helping me
 You can submit all the ideas you have [on this form](https://docs.google.com/forms/d/e/1FAIpQLScbHfIQZGH6lYh36BHUNsR70Eo5v74Qu9GzSbI-WFvuDAbsFA/viewform).
 If you wanna tip me some money, just [click on this link](https://ko-fi.com/cheeteau).

@@ -4,11 +4,15 @@ The purpose of this site is not to create mods that compete with the workshop mo
 
 # To do list
 I see and read all of your suggestions dw. All of these are good! I promise, but some are too difficult to import or just to do, so please don't be mad or something if I don't add your idea. Still a big thank you for helping!
-- [ ] Armors
-- [ ] Multiple gun sounds
-- [ ] Reimport projects so you can modify them
-- [ ] TV that plays videos (+ for example, play a different video if you watch at 3AM or some shit like that.)
-- [ ] Change RPM of weapons (Rate of fire)
+
+Elements that have the ⚠️ emoji on them means I've been working on it but have some difficulties, meaning that they might not be enventually implemented.
+
+- [ ] Armors (Asked by: **ThatUnavalableGuy** _& others_)
+- [ ] Multiple gun sounds (Asked by: **elmordecaixdxd**)
+- [ ] Reimport projects so you can modify them (Asked by: **Qbaczi** _& others_)
+- [ ] ⚠️ TV that plays videos (+ for example, play a different video if you watch at 3AM or some shit like that.) (Asked by: **TheThomasFan**)
+- [ ] Change RPM of weapons (Rate of fire) (Asked by: **elmordecaixdxd**)
+- [ ] Add coding support for items and entities (Asked by: **Clockworker**)
 
 
 # Helping me

@@ -7,6 +7,8 @@ I see and read all of your suggestions dw. All of these are good! I promise, but
 
 Elements that have the ⚠️ emoji on them means I've been working on it but have some difficulties, meaning that they might not be enventually implemented.
 
+If you want to see what is in progress or done already, please check [this out](https://github.com/users/Cheeteau/projects/2/views/2)
+
 - [ ] Armors (Asked by: **ThatUnavalableGuy** _& others_)
 - [ ] Multiple gun sounds (Asked by: **elmordecaixdxd**)
 - [ ] Reimport projects so you can modify them (Asked by: **Qbaczi** _& others_)

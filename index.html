@@ -33,10 +33,17 @@
             <section id="start" class="active">Press <i class="zmdi zmdi-plus"></i> to add your first mod element</section>
 
             <section id="create">
-                <h1>Created Elements</h1>
+                <h1>Created Elements <span id="numberElements">0/35</span></h1>
+                <span>The amount of items you can create is now limited as they were stored in your browser's localstorage.</span>
+                <span>It seems like the amount of data you can store in it has a quota, so I limited the number of items you can create so you can't exceed it.</span>
+                <br>
+
                 <div>
                     <div id="createdElements"></div>
                     <button data-page="createElement" id="mod_createElement">Create Element</button>
+                    <button id="mod_clearElements">Clear All Elements</button>
+                    <button disabled>Save Mod Elements</button>
+                    <button disabled>Load Mod Elements</button>
                 </div>
             </section>
 
@@ -66,11 +73,11 @@
                         </li>
                         <li>
                             <span>Firearm Name</span>
-                            <input type="text" class="name required">
+                            <input type="text" maxlength="30" class="name required">
                         </li>
                         <li>
                             <span>Firearm Description</span>
-                            <input type="text" class="description required">
+                            <input type="text" maxlength="30" class="description required">
                         </li>
                         <li>
                             <span>Firearm Thumbnail</span>
@@ -109,11 +116,11 @@
                         </li>
                         <li>
                             <span>Explosive Name</span>
-                            <input type="text" class="name required">
+                            <input type="text" maxlength="30" class="name required">
                         </li>
                         <li>
                             <span>Explosive Description</span>
-                            <input type="text" class="description required">
+                            <input type="text" maxlength="30" class="description required">
                         </li>
                         <li>
                             <span>Explosive Thumbnail</span>
@@ -154,11 +161,11 @@
                         </li>
                         <li>
                             <span>Entity Name</span>
-                            <input type="text" class="name required">
+                            <input type="text" maxlength="30" class="name required">
                         </li>
                         <li>
                             <span>Entity Description</span>
-                            <input type="text" class="description required">
+                            <input type="text" maxlength="30" class="description required">
                         </li>
                         <li>
                             <span>Entity Thumbnail</span>
@@ -199,11 +206,11 @@
                     <ul>
                         <li>
                             <span>Object Name</span>
-                            <input type="text" class="name required">
+                            <input type="text" maxlength="30" class="name required">
                         </li>
                         <li>
                             <span>Object Description</span>
-                            <input type="text" class="description required">
+                            <input type="text" maxlength="30" class="description required">
                         </li>
                         <li>
                             <span>Object Thumbnail</span>
@@ -283,11 +290,11 @@
                         </li>
                         <li>
                             <span>Melee Name</span>
-                            <input type="text" class="name required">
+                            <input type="text" maxlength="30" class="name required">
                         </li>
                         <li>
                             <span>Melee Description</span>
-                            <input type="text" class="description required">
+                            <input type="text" maxlength="30" class="description required">
                         </li>
                         <li>
                             <span>Melee Thumbnail</span>
@@ -309,9 +316,9 @@
                 <h1>Mod Settings</h1>
                 <div>
                     <div class="left">
-                        <input type="text" id="mod_name" placeholder="Mod Name" autocomplete="off">
-                        <input type="text" id="mod_author" placeholder="Author Name" autocomplete="off">
-                        <input type="text" id="mod_description" placeholder="Mod Description" autocomplete="off">
+                        <input type="text" maxlength="30" id="mod_name" placeholder="Mod Name" autocomplete="off">
+                        <input type="text" maxlength="30" id="mod_author" placeholder="Author Name" autocomplete="off">
+                        <input type="text" maxlength="30" id="mod_description" placeholder="Mod Description" autocomplete="off">
                         <span id="settings_warning"></span>
 
                         <div style="margin-top: 1pc;">
@@ -362,6 +369,7 @@
                         <li><b class="suggestion">MellonMunch</b> | Added shotgun, couldn't add the nukes but I might take a look about them. Instead I added a General Purpose Bomb.</li>
                         <li><b class="suggestion">Muurkz</b> | High quality textures for humans (Scaling according to the width of the entity's skin image).</li>
                         <li><b class="suggestion">JuusoKamut</b> | Added links to get sprites, also added the Gorse in the entity making form.</li>
+                        <li><b class="suggestion">Clockworker</b> | Bug catcher</li>
                     </ul>
                 </div>
             </section>

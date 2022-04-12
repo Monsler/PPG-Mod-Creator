@@ -168,4 +168,4 @@ for (const button of itemSaveButtons){
 _ItemManager.load(); // Loads the item manager
 const items = _ItemManager.items; // And exports it items
 
-export { items, checkInputs };
+export { items, checkInputs, _ItemManager };

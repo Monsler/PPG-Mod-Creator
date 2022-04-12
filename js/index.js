@@ -1,5 +1,5 @@
 import "./utils/settings.js";
-import { items, checkInputs } from "./utils/create.js";
+import { items, checkInputs, _ItemManager } from "./utils/create.js";
 import { Creator } from "./utils/creator.js";
 
 
@@ -14,8 +14,11 @@ for (const input of numberInputs){
 
 /* Tab Change Handler */
 const buttons = document.querySelectorAll("i, button");
+const createBtn = document.getElementById("mod_createElement");
+
 for (const button of buttons){
     button.addEventListener("click", () => {
+        // If no pages linked with the btn
         if(!button.dataset.page) return;
 
         const actives = document.querySelectorAll("article > .active, li > .active");
@@ -25,6 +28,10 @@ for (const button of buttons){
         document.getElementById(button.dataset.page).classList.add("active");
     });
 }
+
+
+/* Mod Elements Handler */
+document.getElementById("mod_clearElements").addEventListener("click", () => { _ItemManager.clear(); });
 
 
 /* Download Mod */

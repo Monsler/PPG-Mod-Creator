@@ -22,6 +22,7 @@ If you wanna tip me some money, just [click on this link](https://ko-fi.com/chee
 And if you're crazy, you can contribute on the repo to help me clean the code, and have your name displayed on the helpers page on the website.
 
 # Changelogs (From the websites creation to now)
+- **[04/12/2022]** Limited the amount of item users can now create. (+ WIP saving and loading mod elements)
 - **[03/09/2022]** Added almost all material types in the object creation form, added the Gorse in the entity making form and added ppg assets links.
 - **[03/08/2022]** High quality human textures are now supported. Also added the possibility to make an object weightless. Also modified the README.md
 - **[03/05/2022]** Added more explosive and weapon types.

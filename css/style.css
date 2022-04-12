@@ -6,6 +6,7 @@
 ::-webkit-scrollbar-thumb {background: rgba(241, 241, 241, 0.2);}
 
 * {outline: none;}
+*:disabled {opacity: 0.5; cursor: not-allowed;}
 img {content-visibility: auto;}
 body {
     margin: 0;
@@ -29,7 +30,6 @@ button {
     cursor: pointer;
 }
 button:hover {transform: translateY(-3px);opacity: .7;}
-button.active {transform: translateY(-3px);opacity: .7;}
 
 input[type="file"] {
     position: absolute;

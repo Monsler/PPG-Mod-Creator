@@ -10,7 +10,6 @@ Elements that have the ⚠️ emoji on them means I've been working on it but ha
 - [ ] Armors (Asked by: **ThatUnavalableGuy** _& others_)
 - [ ] Multiple gun sounds (Asked by: **elmordecaixdxd**)
 - [ ] Reimport projects so you can modify them (Asked by: **Qbaczi** _& others_)
-- [ ] ⚠️ TV that plays videos (+ for example, play a different video if you watch at 3AM or some shit like that.) (Asked by: **TheThomasFan**)
 - [ ] Change RPM of weapons (Rate of fire) (Asked by: **elmordecaixdxd**)
 - [ ] Add coding support for items and entities (Asked by: **Clockworker**)
 

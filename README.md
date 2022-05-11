@@ -2,22 +2,7 @@
 [PPG Mod Creator](https://cheeteau.github.io/PPG-Mod-Creator/) is a small mod creator that I created in my free time.
 The purpose of this site is not to create mods that compete with the workshop mods, it's more for people who don't want to learn how to code for creating mods. So don't expect to be able to create incredible things.
 
-# To do list
-I see and read all of your suggestions dw. All of these are good! I promise, but some are too difficult to import or just to do, so please don't be mad or something if I don't add your idea. Still a big thank you for helping!
-
-Elements that have the ⚠️ emoji on them means I've been working on it but have some difficulties, meaning that they might not be enventually implemented.
-
-If you want to see what is in progress or done already, please check [this out](https://github.com/users/Cheeteau/projects/2/views/2)
-
-- [ ] Armors (Asked by: **ThatUnavalableGuy** _& others_)
-- [ ] Multiple gun sounds (Asked by: **elmordecaixdxd**)
-- [ ] Reimport projects so you can modify them (Asked by: **Qbaczi** _& others_)
-- [ ] Change RPM of weapons (Rate of fire) (Asked by: **elmordecaixdxd**)
-- [ ] Add coding support for items and entities (Asked by: **Clockworker**)
-
-
 # Helping me
-You can submit all the ideas you have [on this form](https://docs.google.com/forms/d/e/1FAIpQLScbHfIQZGH6lYh36BHUNsR70Eo5v74Qu9GzSbI-WFvuDAbsFA/viewform).
 If you wanna tip me some money, just [click on this link](https://ko-fi.com/cheeteau).
 And if you're crazy, you can contribute on the repo to help me clean the code, and have your name displayed on the helpers page on the website.
 
